@@ -10,10 +10,13 @@
     (catch Exception e (println "caught exception: " (.getMessage e)))))
 
 (defn cleanup []
-  (doseq [dir (->> (file-seq (io/file "../data"))
+  (doseq [dir (->> (file-seq (io/file "../data-train"))
                    rest
                    (filter #(.isDirectory %)))]
     (when (< (count (.list dir)) 30)
       (println "remove" (.getName dir))
       (doseq [f (reverse (file-seq dir))]
         (io/delete-file f)))))
+
+; cp -r data data-train
+;(cleanup)
