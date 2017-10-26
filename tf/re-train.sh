@@ -12,11 +12,11 @@ bazel-bin/tensorflow/examples/image_retraining/retrain --how_many_training_steps
 # visualize at http://localhost:6006
 tensorboard --logdir /tmp/retrain_logs
 
-cp /tmp/output_* ~/projects/q/butterfly-vn/
+cp /tmp/output_* ~/projects/q/butterfly-vn/tf/
 
 # test
 TF_CPP_MIN_LOG_LEVEL=3 \
 bazel-bin/tensorflow/examples/image_retraining/label_image \
---graph=/tmp/output_graph.pb --labels=/tmp/output_labels.txt \
+--graph=$HOME/projects/q/butterfly-vn/tf/output_graph.pb --labels=$HOME/projects/q/butterfly-vn/tf/output_labels.txt \
 --output_layer=final_result:0 \
 --image=$HOME/data/231s.jpg
