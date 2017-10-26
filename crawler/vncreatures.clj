@@ -1,6 +1,8 @@
 (ns vncreatures
   (:require [clojure.java.io :as io]
+            [clojure.java.jdbc :as jdbc]
             [clojure.string :as str]
+            [db]
             [net.cgrand.enlive-html :refer :all]
             [util :refer [save-image]])
   (:import (java.net URL)))
@@ -24,9 +26,22 @@
 
 (def n (atom 0))
 
-(doseq [[id vn-name genus species] (mapcat butterflies (range 1 6))]
-  (.mkdir (io/file (str "../data/" genus)))
-  (save-image (str base-url "/pictures/insect/" id "s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
-  (save-image (str base-url "/pictures/insect/" id "_1s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
-  (save-image (str base-url "/pictures/insect/" id "_2s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
-  (save-image (str base-url "/pictures/insect/" id "_3s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg")))
+(defn save-data []
+  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 6))]
+    (.mkdir (io/file (str "../data/" genus)))
+    (save-image (str base-url "/pictures/insect/" id "s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
+    (save-image (str base-url "/pictures/insect/" id "_1s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
+    (save-image (str base-url "/pictures/insect/" id "_2s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
+    (save-image (str base-url "/pictures/insect/" id "_3s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))))
+
+(defn insert-db []
+  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 6))]
+    (if (seq (jdbc/query db/db-spec ["SELECT * FROM butterfly WHERE genus = ? AND species = ?" genus species]))
+      (jdbc/update! db/db-spec :butterfly
+                    {:vn_name vn-name
+                     :url_vncreatures (str base-url "/chitiet.php?loai=3&ID=" id)}
+                    ["genus = ? AND species = ?" genus species])
+      (jdbc/insert! db/db-spec :butterfly {:genus genus
+                                           :species species
+                                           :vn_name vn-name
+                                           :url_vncreatures (str base-url "/chitiet.php?loai=3&ID=" id)}))))

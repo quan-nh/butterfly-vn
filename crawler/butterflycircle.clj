@@ -40,7 +40,8 @@
     (let [{:keys [genus species imgs]} (butterfly link)]
       (.mkdir (io/file (str "../data/" genus)))
       (println "saving" (count imgs) "images")
-      (doall (map #(save-image % (str "../data/" genus "/" species "_" (swap! n inc) ".jpg")) imgs)))))
+      (doseq [img imgs]
+        (save-image img (str "../data/" genus "/" species "_" (swap! n inc) ".jpg"))))))
 
 (defn insert-db []
   (doseq [link links]
