@@ -12,17 +12,17 @@
 (defn generic-template [text image-url web-url payload-id]
   {:type "template"
    :payload {:template_type "generic"
-             :elements [{:title "Giống (chi) - Genus"
+             :elements [{:title "Giống (chi)"
                          :subtitle text
                          :image_url image-url
                          :buttons [{:type "web_url"
                                     :url web-url
                                     :title "Chi tiết"}
                                    {:type "postback"
-                                    :title "Yes!"
+                                    :title "Chính xác!"
                                     :payload (str "yes-" payload-id)},
                                    {:type "postback"
-                                    :title "No!"
+                                    :title "Sai lè!"
                                     :payload (str "no-" payload-id)}]}]}})
 
 (defn send-message [sender-psid response]
