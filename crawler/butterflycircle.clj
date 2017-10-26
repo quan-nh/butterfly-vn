@@ -41,7 +41,7 @@
       (.mkdir (io/file (str "../data/" genus)))
       (println "saving" (count imgs) "images")
       (doseq [img imgs]
-        (save-image img (str "../data/" genus "/" species "_" (swap! n inc) ".jpg"))))))
+        (save-image img (str "../data/" genus "/" species "_" (swap! n inc)))))))
 
 (defn insert-db []
   (doseq [link links]

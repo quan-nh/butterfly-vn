@@ -27,15 +27,15 @@
 (def n (atom 0))
 
 (defn save-data []
-  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 6))]
+  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 7))]
     (.mkdir (io/file (str "../data/" genus)))
-    (save-image (str base-url "/pictures/insect/" id "s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
-    (save-image (str base-url "/pictures/insect/" id "_1s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
-    (save-image (str base-url "/pictures/insect/" id "_2s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))
-    (save-image (str base-url "/pictures/insect/" id "_3s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc) ".jpg"))))
+    (save-image (str base-url "/pictures/insect/" id "s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))
+    (save-image (str base-url "/pictures/insect/" id "_1s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))
+    (save-image (str base-url "/pictures/insect/" id "_2s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))
+    (save-image (str base-url "/pictures/insect/" id "_3s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))))
 
 (defn insert-db []
-  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 6))]
+  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 7))]
     (if (seq (jdbc/query db/db-spec ["SELECT * FROM butterfly WHERE genus = ? AND species = ?" genus species]))
       (jdbc/update! db/db-spec :butterfly
                     {:vn_name vn-name
