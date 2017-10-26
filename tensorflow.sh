@@ -7,7 +7,7 @@ bazel build --config opt tensorflow/examples/image_retraining:retrain
 bazel build --config opt tensorflow/examples/image_retraining:label_image
 
 # retrain
-bazel-bin/tensorflow/examples/image_retraining/retrain --how_many_training_steps 8000 --random_crop 10 --random_scale 10 --random_brightness 10 --image_dir ~/projects/q/butterfly-vn/data-train
+bazel-bin/tensorflow/examples/image_retraining/retrain --how_many_training_steps 8000 --random_crop 5 --random_scale 5 --random_brightness 5 --image_dir ~/projects/q/butterfly-vn/data-train
 
 # visualize at http://localhost:6006
 tensorboard --logdir /tmp/retrain_logs
