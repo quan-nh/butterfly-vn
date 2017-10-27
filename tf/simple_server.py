@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs, unquote
 from urllib.error import HTTPError
 from tensorflow.python.framework.errors_impl import InvalidArgumentError
 import json
@@ -15,7 +15,7 @@ class simpleHTTPServer_RequestHandler(BaseHTTPRequestHandler):
     parsed_path = urlparse(self.path)
 
     if parsed_path.path == '/label_image' and 'image_url' in parsed_path.query:
-      image_url = parse_qs(parsed_path.query)['image_url'][0]
+      image_url = unquote(parse_qs(parsed_path.query)['image_url'][0])
 
       try:
         image_label = label_image(image_url)

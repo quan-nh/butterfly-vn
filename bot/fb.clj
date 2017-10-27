@@ -1,13 +1,22 @@
 (ns fb
-  (:require [cheshire.core :as json]
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]
+            [cheshire.core :as json]
             [org.httpkit.client :as http]))
 
 (defn attachment-url [attachment]
-  ;; link in text file
-  ; [{:title "pbs.twimg.com", :url "https://l.facebook.com/l.php?u=https%3A%2F%2Fpbs.twimg.com%2Fmedia%2FC7knzrWVwAATSPm.jpg&h=ATOIp..", :type "fallback", :payload nil}]
-  ;; attach message
-  ; [{:type "image", :payload {:url "https://scontent.xx.fbcdn.net/v/t35.0-12/22833638_206949.."}}]
-  "https://pbs.twimg.com/media/CpJj7qFWcAEnwaH.jpg")
+  (cond
+    (= "image" (:type attachment))
+    (get-in attachment [:payload :url])
+
+    (:url attachment)
+    (let [query-params (-> (:url attachment) io/as-url .getQuery (str/split #"&"))
+          u (->> query-params
+                 (map #(str/split % #"="))
+                 (filter (fn [[k _]] (= "u" k)))
+                 first
+                 second)]
+      (java.net.URLDecoder/decode u "UTF-8"))))
 
 (defn generic-template [text image-url web-url payload-id]
   {:type "template"
@@ -19,10 +28,10 @@
                                     :url web-url
                                     :title "Chi tiết"}
                                    {:type "postback"
-                                    :title "Chính xác!"
+                                    :title "👍"
                                     :payload (str "yes-" payload-id)},
                                    {:type "postback"
-                                    :title "Sai lè!"
+                                    :title "👎"
                                     :payload (str "no-" payload-id)}]}]}})
 
 (defn send-message [sender-psid response]

@@ -6,5 +6,8 @@
   ring/ring-json {:mvn/version "0.5.0-beta1"}
   compojure {:mvn/version "1.6.0"}
   http-kit {:mvn/version "2.2.0"}
+  org.clojure/java.jdbc {:mvn/version "0.7.3"}
+  org.xerial/sqlite-jdbc {:mvn/version "3.20.1"}
+  org.clojure/core.memoize {:mvn/version "0.5.8"}
  }
 }

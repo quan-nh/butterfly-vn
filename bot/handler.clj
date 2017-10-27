@@ -11,23 +11,38 @@
     {:status 403}))
 
 (defn handle-message [sender-psid {:keys [text attachments]}]
-  (if (seq attachments)
-    (let [image-url (fb/attachment-url (first attachments))
-          payload-id (db/save sender-psid text image-url)
-          [text web-url] (dl/label-image image-url)
-          template (fb/generic-template text image-url web-url payload-id)]
-      (fb/send-message sender-psid
-                       {:attachment template}))
+  (if-let [image-url (or (fb/attachment-url (first attachments))
+                         (some->> text (re-find #"https?://\S+")))]
+    (let [payload-id (db/insert sender-psid text image-url)
+          [status body] (dl/memo-label-image image-url)]
+      (case status
+        200
+        (let [[text web-url] body
+              template (fb/generic-template text image-url web-url payload-id)]
+          (fb/send-message sender-psid
+                           {:attachment template})
+          (db/update-label payload-id body))
+
+        400
+        (fb/send-message sender-psid
+                         {:text "Send link or attach image!"})
+
+        (fb/send-message sender-psid
+                         {:text "Oops! Something went wrong."})))
+
     (fb/send-message sender-psid
                      {:text "Send link or attach image!"})))
 
 (defn handle-postback [sender-psid {:keys [payload]}]
-  ;; todo log feedback
   (cond
-    (str/starts-with? payload "yes") (fb/send-message sender-psid
-                                                      {:text "Thanks!"})
-    (str/starts-with? payload "no") (fb/send-message sender-psid
-                                                     {:text "Oops, try sending another image."})))
+    (str/starts-with? payload "yes")
+    (fb/send-message sender-psid
+                     {:text "Thanks!"})
+
+    (str/starts-with? payload "no")
+    (fb/send-message sender-psid
+                     {:text "Oops, try sending another image."}))
+  (db/update-feedback sender-psid payload))
 
 (defn handle-event [{:keys [body]}]
   (if (= "page" (:object body))
