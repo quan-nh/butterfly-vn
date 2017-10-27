@@ -15,4 +15,6 @@
              (wrap-json-body {:keywords? true})
              wrap-params))
 
-(run-server app {:port 3000})
+(defn -main []
+  (let [port (Integer/parseInt (get (System/getenv) "PORT" "5000"))]
+    (run-server app {:port port})))
