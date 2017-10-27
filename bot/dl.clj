@@ -3,6 +3,8 @@
             [cheshire.core :as json]
             [org.httpkit.client :as http]))
 
+(def dl-server (System/getenv "DL_SERVER"))
+
 (defn- url-encode [url] (some-> url (java.net.URLEncoder/encode "UTF-8") (.replace "+" "%20")))
 
 (defn- parse-result [body]
@@ -12,7 +14,7 @@
     [text web-url]))
 
 (defn- label-image [image-url]
-  (let [{:keys [status body]} @(http/get (System/getenv "DL_SERVICE")
+  (let [{:keys [status body]} @(http/get dl-server
                                          {:query-params {:image_url (url-encode image-url)}})]
     (if (= 200 status)
       [status (parse-result body)]

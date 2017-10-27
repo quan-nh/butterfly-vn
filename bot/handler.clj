@@ -1,27 +1,27 @@
 (ns handler
   (:require [clojure.string :as str]
-            [db] [dl] [fb]))
+            [dl] [fb]))
+
+(def verify-token (System/getenv "VERIFY_TOKEN"))
 
 (defn verification [{{mode "hub.mode"
                       token "hub.verify_token"
                       challenge "hub.challenge"} :params}]
   (if (and (= "subscribe" mode)
-           (= (System/getenv "VERIFY_TOKEN") token))
+           (= verify-token token))
     challenge
     {:status 403}))
 
 (defn handle-message [sender-psid {:keys [text attachments]}]
   (if-let [image-url (or (fb/attachment-url (first attachments))
                          (some->> text (re-find #"https?://\S+")))]
-    (let [payload-id (db/insert sender-psid text image-url)
-          [status body] (dl/memo-label-image image-url)]
+    (let [[status body] (dl/memo-label-image image-url)]
       (case status
         200
         (let [[text web-url] body
-              template (fb/generic-template text image-url web-url payload-id)]
+              template (fb/generic-template text image-url web-url)]
           (fb/send-message sender-psid
-                           {:attachment template})
-          (db/update-label payload-id body))
+                           {:attachment template}))
 
         400
         (fb/send-message sender-psid
@@ -34,15 +34,14 @@
                      {:text "Send link or attach image!"})))
 
 (defn handle-postback [sender-psid {:keys [payload]}]
-  (cond
-    (str/starts-with? payload "yes")
+  (case payload
+    "yes"
     (fb/send-message sender-psid
                      {:text "Thanks!"})
 
-    (str/starts-with? payload "no")
+    "no"
     (fb/send-message sender-psid
-                     {:text "Oops, try sending another image."}))
-  (db/update-feedback sender-psid payload))
+                     {:text "Oops! Try sending another image."})))
 
 (defn handle-event [{:keys [body]}]
   (if (= "page" (:object body))

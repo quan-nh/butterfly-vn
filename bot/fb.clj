@@ -4,6 +4,8 @@
             [cheshire.core :as json]
             [org.httpkit.client :as http]))
 
+(def page-access-token (System/getenv "PAGE_ACCESS_TOKEN"))
+
 (defn attachment-url [attachment]
   (cond
     (= "image" (:type attachment))
@@ -18,7 +20,7 @@
                  second)]
       (java.net.URLDecoder/decode u "UTF-8"))))
 
-(defn generic-template [text image-url web-url payload-id]
+(defn generic-template [text image-url web-url]
   {:type "template"
    :payload {:template_type "generic"
              :elements [{:title "Giống (chi)"
@@ -29,14 +31,14 @@
                                     :title "Chi tiết"}
                                    {:type "postback"
                                     :title "👍"
-                                    :payload (str "yes-" payload-id)},
+                                    :payload "yes"},
                                    {:type "postback"
                                     :title "👎"
-                                    :payload (str "no-" payload-id)}]}]}})
+                                    :payload "no"}]}]}})
 
 (defn send-message [sender-psid response]
   (http/post "https://graph.facebook.com/v2.6/me/messages"
-             {:query-params {:access_token (System/getenv "PAGE_ACCESS_TOKEN")}
+             {:query-params {:access_token page-access-token}
               :headers {"Content-Type" "application/json"}
               :body (json/encode {:recipient {:id sender-psid}
                                   :message response})}
