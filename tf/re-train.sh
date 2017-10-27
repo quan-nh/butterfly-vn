@@ -18,5 +18,4 @@ cp /tmp/output_* ~/projects/q/butterfly-vn/tf/
 TF_CPP_MIN_LOG_LEVEL=3 \
 bazel-bin/tensorflow/examples/image_retraining/label_image \
 --graph=$HOME/projects/q/butterfly-vn/tf/output_graph.pb --labels=$HOME/projects/q/butterfly-vn/tf/output_labels.txt \
---output_layer=final_result:0 \
 --image=$HOME/data/231s.jpg
