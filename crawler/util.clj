@@ -1,6 +1,7 @@
 (ns util
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [clojure.pprint :refer [print-table]]))
 
 (defn- ext [url] (str/lower-case (subs url (str/last-index-of url "."))))
 
@@ -22,3 +23,18 @@
 
 ; cp -r data data-train
 ;(cleanup)
+
+(print-table
+ (->> (file-seq (io/file "../data"))
+      rest
+      (filter #(.isDirectory %))
+      (map (fn [dir]
+             (let [no-imgs (count (.list dir))
+                   no-vn-imgs (->> (.list dir)
+                                   (filter #(str/includes? % "_vn_"))
+                                   count)]
+               {:genus (.getName dir)
+                :no-imgs no-imgs
+                :train? (when (>= no-imgs 30) "✅")
+                :vn? (when (pos? no-vn-imgs) "✅")})))
+      (sort-by :no-imgs >)))
