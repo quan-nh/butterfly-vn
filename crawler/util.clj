@@ -1,7 +1,10 @@
 (ns util
   (:require [clojure.java.io :as io]
             [clojure.string :as str]
-            [clojure.pprint :refer [print-table]]))
+            [clojure.pprint :refer [print-table]]
+            [clojure.java.jdbc :as jdbc]
+            [db]
+            [doric.core :refer [table]]))
 
 (defn- ext [url] (str/lower-case (subs url (str/last-index-of url "."))))
 
@@ -24,17 +27,26 @@
 ; cp -r data data-train
 ;(cleanup)
 
-(print-table
- (->> (file-seq (io/file "../data"))
-      rest
-      (filter #(.isDirectory %))
-      (map (fn [dir]
-             (let [no-imgs (count (.list dir))
-                   no-vn-imgs (->> (.list dir)
-                                   (filter #(str/includes? % "_vn_"))
-                                   count)]
-               {:genus (.getName dir)
-                :no-imgs no-imgs
-                :train? (when (>= no-imgs 30) "✅")
-                :vn? (when (pos? no-vn-imgs) "✅")})))
-      (sort-by :no-imgs >)))
+#_(let [data (->> (jdbc/query db/db-spec
+                            ["SELECT genus, GROUP_CONCAT(vn_name) vn_names
+                              FROM butterfly
+                              WHERE vn_name IS NOT NULL
+                              GROUP BY genus;"])
+                (reduce (fn [m {:keys [genus vn_names]}]
+                          (assoc m genus vn_names)) {}))]
+  (println
+   (table [:genus :no-imgs :no-vn-imgs :train? :species]
+          (->> (file-seq (io/file "../data"))
+               rest
+               (filter #(.isDirectory %))
+               (map (fn [dir]
+                      (let [no-imgs (count (.list dir))
+                            no-vn-imgs (->> (.list dir)
+                                            (filter #(str/includes? % "_vn_"))
+                                            count)]
+                        {:genus (.getName dir)
+                         :no-imgs no-imgs
+                         :no-vn-imgs no-vn-imgs
+                         :train? (when (>= no-imgs 30) "✅")
+                         :species (get data (.getName dir))})))
+               (sort-by :no-imgs >)))))
