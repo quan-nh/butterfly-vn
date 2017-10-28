@@ -25,13 +25,13 @@
 
         400
         (fb/send-message sender-psid
-                         {:text "Send link or attach image!"})
+                         {:text "I can't see Butterfly in your message. Make sure your message has a butterfly image link, or you can send an image directly!"})
 
         (fb/send-message sender-psid
                          {:text "Oops! Something went wrong."})))
 
     (fb/send-message sender-psid
-                     {:text "Send link or attach image!"})))
+                     {:text "Send me your butterfly photo and we will help you classify it at Genus level."})))
 
 (defn handle-postback [sender-psid {:keys [payload]}]
   (case payload

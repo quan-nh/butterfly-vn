@@ -45,3 +45,15 @@
              (fn [{:keys [error]}]
                (when error
                  (println "Failed, exception is " error)))))
+
+(defn greeting
+  "docs https://developers.facebook.com/docs/messenger-platform/thread-settings/greeting-text/"
+  []
+  (http/post "https://graph.facebook.com/v2.6/me/thread_settings"
+             {:query-params {:access_token page-access-token}
+              :headers {"Content-Type" "application/json"}
+              :body (json/encode {:setting_type "greeting"
+                                  :greeting {:text "Hi {{user_first_name}}, welcome to Butterfly World.\nSend me your butterfly photo and we will help you classify it at Genus level."}})}
+             (fn [{:keys [error]}]
+               (when error
+                 (println "Failed, exception is " error)))))
