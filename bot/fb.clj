@@ -12,13 +12,15 @@
     (get-in attachment [:payload :url])
 
     (:url attachment)
-    (let [query-params (-> (:url attachment) io/as-url .getQuery (str/split #"&"))
-          u (->> query-params
-                 (map #(str/split % #"="))
-                 (filter (fn [[k _]] (= "u" k)))
-                 first
-                 second)]
-      (java.net.URLDecoder/decode u "UTF-8"))))
+    (let [query-params (some-> (:url attachment) io/as-url .getQuery (str/split #"&"))
+          u (some->> query-params
+                     (map #(str/split % #"="))
+                     (filter (fn [[k _]] (= "u" k)))
+                     first
+                     second)]
+      (some-> u (java.net.URLDecoder/decode "UTF-8")))
+      
+    :else nil))
 
 (defn generic-template [text image-url web-url]
   {:type "template"
