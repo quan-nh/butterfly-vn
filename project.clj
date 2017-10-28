@@ -8,5 +8,6 @@
                  [ring/ring-json "0.5.0-beta1"]
                  [compojure "1.6.0"]
                  [http-kit "2.2.0"]]
+  :source-paths ["bot"]
   :uberjar-name "messenger-bot-standalone.jar"
   :profiles {:uberjar {:aot :all}})
