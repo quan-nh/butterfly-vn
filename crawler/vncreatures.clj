@@ -52,12 +52,13 @@
 
 (defn insert-db []
   (doseq [[id vn-name genus species] (mapcat butterflies (range 1 7))]
+    (println id vn-name genus species)
     (if (seq (jdbc/query db/db-spec ["SELECT * FROM butterfly WHERE genus = ? AND species = ?" genus species]))
       (jdbc/update! db/db-spec :butterfly
                     {:vn_name vn-name
-                     :url_vncreatures (str base-url "/chitiet.php?loai=3&ID=" id)}
+                     :url (str base-url "/chitiet.php?loai=3&ID=" id)}
                     ["genus = ? AND species = ?" genus species])
       (jdbc/insert! db/db-spec :butterfly {:genus genus
                                            :species species
                                            :vn_name vn-name
-                                           :url_vncreatures (str base-url "/chitiet.php?loai=3&ID=" id)}))))
+                                           :url (str base-url "/chitiet.php?loai=3&ID=" id)}))))

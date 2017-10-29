@@ -1,6 +1,8 @@
 (ns ifoundbutterflies
   (:require [clojure.java.io :as io]
+            [clojure.java.jdbc :as jdbc]
             [clojure.string :as str]
+            [db]
             [net.cgrand.enlive-html :refer :all]
             [util :refer [save-image crop-images]])
   (:import (java.net URL)))
@@ -60,3 +62,19 @@
 
 ;mv data-ifoundbutterflies/Papilio-clytia data-ifoundbutterflies/Chilasa-clytia
 ;(crop-images "../data-ifoundbutterflies" "../data" 10 65)
+
+(defn insert-db []
+  (doseq [link links]
+    (println link)
+    (let [{:keys [superfamily family subfamily tribe genus species common-name] :as bf} (butterfly link)]
+      (prn (select-keys bf [:family :genus :species]))
+      (jdbc/insert! db/db-spec :butterfly {:superfamily superfamily
+                                           :family family
+                                           :subfamily subfamily
+                                           :tribe tribe
+                                           :genus genus
+                                           :species species
+                                           :common_name common-name})))
+  (jdbc/update! db/db-spec :butterfly
+                {:genus "Chilasa"}
+                ["genus = ? AND species = ?" "Papilio" "clytia"]))

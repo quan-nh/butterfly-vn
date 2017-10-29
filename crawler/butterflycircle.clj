@@ -17,6 +17,13 @@
 
 (defn- keywordize [name] (-> name (str/replace #"\s+" "-") (str/replace #":" "") keyword))
 
+(defn- capitalize-words 
+  "Capitalize every word in a string"
+  [s]
+  (->> (str/split (str s) #"\b") 
+       (map str/capitalize)
+       str/join))
+
 (defn- parse-tr [tr]
   (->> (select tr [:td])
        (map text)
@@ -48,19 +55,17 @@
             (save-image img (str dir "/butterflycircle_" (swap! n inc) ext))))
         imgs)))))
 
-(crop-images "../data-butterflycircle" "../data" 20 30)
+;(crop-images "../data-butterflycircle" "../data" 20 30)
 
 (defn insert-db []
   (doseq [link links]
     (println link)
-    (let [{:keys [family subfamily genus species subspecies common-name wingspan status] :as bf} (butterfly link)]
-      (prn (select-keys bf [:family :subfamily :genus :species :subspecies]))
-      (jdbc/insert! db/db-spec :butterfly {:family family
-                                           :subfamily subfamily
-                                           :genus genus
-                                           :species species
-                                           :subspecies subspecies
-                                           :common_name common-name
-                                           :wingspan wingspan
-                                           :status status
-                                           :url_butterflycircle link}))))
+    (let [{:keys [family subfamily genus species common-name] :as bf} (butterfly link)]
+      (prn (select-keys bf [:family :genus :species]))
+      (when-not (seq (jdbc/query db/db-spec ["SELECT * FROM butterfly WHERE genus = ? AND species = ?" (str/capitalize genus) species]))
+        (println "inserting..")
+        (jdbc/insert! db/db-spec :butterfly {:family (str/capitalize family)
+                                             :subfamily (str/capitalize subfamily)
+                                             :genus (str/capitalize genus)
+                                             :species species
+                                             :common_name (capitalize-words common-name)})))))

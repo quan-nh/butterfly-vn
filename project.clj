@@ -9,5 +9,6 @@
                  [compojure "1.6.0"]
                  [http-kit "2.2.0"]]
   :source-paths ["bot"]
+  :resource-paths ["db"]
   :uberjar-name "messenger-bot-standalone.jar"
   :profiles {:uberjar {:aot :all}})

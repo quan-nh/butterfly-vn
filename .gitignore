@@ -1,4 +1,3 @@
 *.cpcache/
-*.db
 /data*
 /target/

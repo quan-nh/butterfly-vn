@@ -7,18 +7,16 @@
 
 (def butterfly-table-ddl
   (jdbc/create-table-ddl :butterfly
-                         [[:family :text]
+                         [[:superfamily :text]
+                          [:family :text]
                           [:subfamily :text]
+                          [:tribe :text]
                           [:genus :text]
                           [:species :text]
-                          [:subspecies :text]
                           [:common_name :text]
                           [:vn_name :text]
-                          [:wingspan :text]
-                          [:status :text]
-                          [:url_butterflycircle :text]
-                          [:url_vncreatures :text]]))
+                          [:url :text]]))
 
 #_(jdbc/db-do-commands db-spec
                      [butterfly-table-ddl
-                      "CREATE UNIQUE INDEX name_ix ON butterfly ( genus, species, subspecies );"])
+                      "CREATE UNIQUE INDEX name_ix ON butterfly ( genus, species );"])
