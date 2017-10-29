@@ -1,13 +1,9 @@
 (ns ifoundbutterflies
   (:require [clojure.java.io :as io]
             [clojure.string :as str]
-            [image-resizer.core :refer [crop-from dimensions]]
-            [image-resizer.format :as format]
             [net.cgrand.enlive-html :refer :all]
-            [util :refer [save-image]])
-  (:import (java.net URL)
-           (java.io File)
-           (javax.imageio ImageIO)))
+            [util :refer [save-image crop-images]])
+  (:import (java.net URL)))
 
 (def base-url "http://www.ifoundbutterflies.org")
 
@@ -62,23 +58,5 @@
   (prn @visited-links)
   (prn @error-links))
 
-(defn crop-image [^File image dest-dir]
-  (let [buffered-image (ImageIO/read image)
-        file-name (.getName image)
-        [width height] (dimensions buffered-image)]
-    (format/as-file
-     (crop-from image 10 65 (- width 20) (- height 130))
-     (str dest-dir "/" file-name)
-     :verbatim)))
-
-;mv data-ifoundbutterflies/Papilio-clytia data-ifoundbutterflies/Chilasa-clytia     
-(defn crop-images []
-  (doseq [dir (->> (file-seq (io/file "../data-ifoundbutterflies"))
-                   rest
-                   (filter #(.isDirectory %)))]
-    (let [dest-dir (str "../data/" (.getName dir))]
-      (println "crop image, save to dir" dest-dir)
-      (.mkdir (io/file dest-dir))
-      (doall
-       (pmap #(crop-image % dest-dir)
-             (rest (file-seq dir)))))))
+;mv data-ifoundbutterflies/Papilio-clytia data-ifoundbutterflies/Chilasa-clytia
+;(crop-images "../data-ifoundbutterflies" "../data" 10 65)

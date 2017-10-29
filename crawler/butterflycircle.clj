@@ -4,7 +4,7 @@
             [clojure.string :as str]
             [db]
             [net.cgrand.enlive-html :refer :all]
-            [util :refer [save-image]])
+            [util :refer [save-image crop-images]])
   (:import (java.net URL)))
 
 (def links (let [dom (-> "http://www.butterflycircle.com/checklist/"
@@ -37,11 +37,18 @@
 (defn save-data []
   (doseq [link links]
     (println link)
-    (let [{:keys [genus species imgs]} (butterfly link)]
-      (.mkdir (io/file (str "../data/" genus)))
-      (println "saving" (count imgs) "images")
-      (doseq [img imgs]
-        (save-image img (str "../data/" genus "/" species "_" (swap! n inc)))))))
+    (let [{:keys [genus species imgs]} (butterfly link)
+          dir (str "../data-butterflycircle/" (str/capitalize genus) "-" species)]
+      (.mkdir (io/file dir))
+      (println "saving" (count imgs) "images to dir" dir)
+      (doall
+       (pmap
+        (fn [img]
+          (let [ext (str/lower-case (subs img (str/last-index-of img ".")))]
+            (save-image img (str dir "/butterflycircle_" (swap! n inc) ext))))
+        imgs)))))
+
+(crop-images "../data-butterflycircle" "../data" 20 30)
 
 (defn insert-db []
   (doseq [link links]
