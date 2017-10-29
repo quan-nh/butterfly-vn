@@ -22,17 +22,33 @@
                         (str/starts-with? vn-name "Bướm"))))
          (map (fn [[[id vn-name] [_ latin-name]]]
                 (let [[genus species] (str/split latin-name #"\s+")]
-                  [id vn-name (str/lower-case genus) (str/lower-case species)]))))))
-
-(def n (atom 0))
+                  [id vn-name genus species]))))))
 
 (defn save-data []
-  (doseq [[id vn-name genus species] (mapcat butterflies (range 1 7))]
-    (.mkdir (io/file (str "../data/" genus)))
-    (save-image (str base-url "/pictures/insect/" id "s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))
-    (save-image (str base-url "/pictures/insect/" id "_1s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))
-    (save-image (str base-url "/pictures/insect/" id "_2s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))
-    (save-image (str base-url "/pictures/insect/" id "_3s.jpg") (str "../data/" genus "/" species "_vn_" (swap! n inc)))))
+  (doseq [[id _ genus species] (mapcat butterflies (range 1 7))]
+    (let [dir (str "../data-vncreatures/" genus "-" species)]
+      (println dir)
+      (.mkdir (io/file dir))
+      (try
+        (save-image
+         (str base-url "/pictures/insect/" id "s.jpg")
+         (str dir "/vncreatures_" id "s.jpg"))
+        (catch Exception _))
+      (try
+        (save-image
+         (str base-url "/pictures/insect/" id "_1s.jpg")
+         (str dir "/vncreatures_" id "_1s.jpg"))
+        (catch Exception _))
+      (try
+        (save-image
+         (str base-url "/pictures/insect/" id "_2s.jpg")
+         (str dir "/vncreatures_" id "_2s.jpg"))
+        (catch Exception _))
+      (try
+        (save-image
+         (str base-url "/pictures/insect/" id "_3s.jpg")
+         (str dir "/vncreatures_" id "_3s.jpg"))
+        (catch Exception _)))))
 
 (defn insert-db []
   (doseq [[id vn-name genus species] (mapcat butterflies (range 1 7))]
