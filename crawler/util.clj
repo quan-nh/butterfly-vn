@@ -4,7 +4,6 @@
             [clojure.pprint :refer [print-table]]
             [clojure.java.jdbc :as jdbc]
             [db]
-            [doric.core :refer [table]]
             [image-resizer.core :refer [crop-from dimensions]]
             [image-resizer.format :as format])
   (:import (java.io File)
@@ -41,34 +40,24 @@
   (doseq [dir (->> (file-seq (io/file "../data-train"))
                    rest
                    (filter #(.isDirectory %)))]
-    (when (< (count (.list dir)) 30)
-      (println "remove" (.getName dir))
-      (doseq [f (reverse (file-seq dir))]
-        (io/delete-file f)))))
+    (let [no-imgs (count (.list dir))
+          no-vn-imgs (->> (.list dir)
+                          (filter #(str/starts-with? % "vncreatures_"))
+                          count)]
+      (when (or (< no-imgs 30)
+                (zero? no-vn-imgs))
+        (println "remove" (.getName dir))
+        (doseq [f (reverse (file-seq dir))]
+          (io/delete-file f))))))
 
 ; cp -r data data-train
 ;(cleanup)
 
-#_(let [data (->> (jdbc/query db/db-spec
-                              ["SELECT genus, GROUP_CONCAT(vn_name) vn_names
-                              FROM butterfly
-                              WHERE vn_name IS NOT NULL
-                              GROUP BY genus;"])
-                  (reduce (fn [m {:keys [genus vn_names]}]
-                            (assoc m genus vn_names)) {}))]
-    (println
-     (table [:genus :no-imgs :no-vn-imgs :train? :species]
-            (->> (file-seq (io/file "../data"))
-                 rest
-                 (filter #(.isDirectory %))
-                 (map (fn [dir]
-                        (let [no-imgs (count (.list dir))
-                              no-vn-imgs (->> (.list dir)
-                                              (filter #(str/includes? % "_vn_"))
-                                              count)]
-                          {:genus (.getName dir)
-                           :no-imgs no-imgs
-                           :no-vn-imgs no-vn-imgs
-                           :train? (when (>= no-imgs 30) "✅")
-                           :species (get data (.getName dir))})))
-                 (sort-by :no-imgs >)))))
+#_(print-table
+ (some->> (jdbc/query db/db-spec
+                      ["SELECT vn_name, genus, species
+                        FROM butterfly
+                        WHERE vn_name IS NOT NULL;"])
+          (map #(assoc % :no-imgs (count (.list (io/file (str "../data/" (:genus %) "-" (:species %)))))))
+          (map #(assoc % :train? (when (>= (:no-imgs %) 30) "✅")))
+          (sort-by :no-imgs >)))
