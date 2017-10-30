@@ -1,6 +1,5 @@
 (ns dl
   (:require [clojure.core.memoize :as memo]
-            [clojure.java.io :as io]
             [clojure.string :as str]
             [clojure.java.jdbc :as jdbc]
             [cheshire.core :as json]
