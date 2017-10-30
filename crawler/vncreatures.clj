@@ -26,7 +26,7 @@
 
 (defn save-data []
   (doseq [[id _ genus species] (mapcat butterflies (range 1 7))]
-    (let [dir (str "../data-vncreatures/" genus "-" species)]
+    (let [dir (str "../data-vncreatures/" genus "_" species)]
       (println dir)
       (.mkdir (io/file dir))
       (try

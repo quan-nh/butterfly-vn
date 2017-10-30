@@ -114,16 +114,16 @@
 |                Bướm bụi nâu đen |       Mycalesis |        mineus |       36 |       ✅ |
 |              Bướm nâu đuôi xanh |        Tanaecia |         julii |       35 |       ✅ |
 |            Bướm phượng xanh lớn |         Papilio |      protenor |       34 |       ✅ |
+|                       Bướm đuôi |         Vagrans |        egista |       33 |       ✅ |
+| Bướm phượng cánh chim chấm liền |         Troides |        helena |       33 |       ✅ |
 |                       Bướm trúc |      Discophora |      sondaica |       33 |       ✅ |
+|       Bướm thiên đường rừng rậm |      Thaumantis |        diores |       33 |       ✅ |
 |         Bướm cối xay gió thường |           Byasa |    polyeuctes |       32 |       ✅ |
 |           Bướm nữ hoàng  đốm đỏ |          Delias |    descombesi |       31 |       ✅ |
-|       Bướm thiên đường rừng rậm |      Thaumantis |        diores |       30 |       ✅ |
-|                       Bướm đuôi |         Vagrans |        egista |       29 |         |
-|                   Bướm gia đình |      Cirrochroa |         tyche |       29 |         |
-|               Bướm cánh viền đỏ |          Delias |      hyparete |       29 |         |
-| Bướm phượng cánh chim chấm liền |         Troides |        helena |       28 |         |
-|              Bướm cánh sọc chéo |           Lethe |       confusa |       28 |         |
-|        Bướm nhảy cuối cánh vàng |        Mooreana |   trichoneura |       27 |         |
+|                   Bướm gia đình |      Cirrochroa |         tyche |       31 |       ✅ |
+|               Bướm cánh viền đỏ |          Delias |      hyparete |       31 |       ✅ |
+|              Bướm cánh sọc chéo |           Lethe |       confusa |       31 |       ✅ |
+|        Bướm nhảy cuối cánh vàng |        Mooreana |   trichoneura |       29 |         |
 |            Bướm hổ gân cánh đen |          Danaus |    melanippus |       27 |         |
 |      Bướm cánh bản đồ cẩm thạch |        Cyrestis |        cocles |       27 |         |
 |                Bướm hổ cánh nâu |       Parantica |          sita |       26 |         |

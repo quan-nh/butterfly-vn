@@ -45,7 +45,7 @@
     (println link)
     (try
       (let [{:keys [genus species imgs]} (butterfly link)
-            img-dir (str "../data-ifoundbutterflies/" genus "-" species)]
+            img-dir (str "../data-ifoundbutterflies/" genus "_" species)]
         (.mkdir (io/file img-dir))
         (println "saving" (count imgs) "images")
         (doseq [img imgs]

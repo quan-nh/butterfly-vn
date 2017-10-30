@@ -37,27 +37,30 @@
              (rest (file-seq dir)))))))
 
 (defn cleanup []
-  (doseq [dir (->> (file-seq (io/file "../data-train"))
-                   rest
-                   (filter #(.isDirectory %)))]
-    (let [no-imgs (count (.list dir))
-          no-vn-imgs (->> (.list dir)
-                          (filter #(str/starts-with? % "vncreatures_"))
-                          count)]
-      (when (or (< no-imgs 30)
-                (zero? no-vn-imgs))
+  (let [vn-butterflies (->> (jdbc/query db/db-spec
+                                        ["SELECT (genus || \"-\" || species) AS name
+                                          FROM butterfly
+                                          WHERE vn_name IS NOT NULL;"])
+                            (map :name)
+                            set)]
+    (doseq [dir (->> (file-seq (io/file "../data-train"))
+                     rest
+                     (filter #(.isDirectory %)))]
+      (when (or (< (count (.list dir)) 30)
+                (not-any? vn-butterflies [(.getName dir)]))
         (println "remove" (.getName dir))
         (doseq [f (reverse (file-seq dir))]
           (io/delete-file f))))))
 
 ; cp -r data data-train
+; rename 's/-/_/g' *
 ;(cleanup)
 
 #_(print-table
- (some->> (jdbc/query db/db-spec
-                      ["SELECT vn_name, genus, species
+   (some->> (jdbc/query db/db-spec
+                        ["SELECT vn_name, genus, species
                         FROM butterfly
                         WHERE vn_name IS NOT NULL;"])
-          (map #(assoc % :no-imgs (count (.list (io/file (str "../data/" (:genus %) "-" (:species %)))))))
-          (map #(assoc % :train? (when (>= (:no-imgs %) 30) "✅")))
-          (sort-by :no-imgs >)))
+            (map #(assoc % :no-imgs (count (.list (io/file (str "../data/" (:genus %) "_" (:species %)))))))
+            (map #(assoc % :train? (when (>= (:no-imgs %) 30) "✅")))
+            (sort-by :no-imgs >)))

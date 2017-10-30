@@ -45,7 +45,7 @@
   (doseq [link links]
     (println link)
     (let [{:keys [genus species imgs]} (butterfly link)
-          dir (str "../data-butterflycircle/" (str/capitalize genus) "-" species)]
+          dir (str "../data-butterflycircle/" (str/capitalize genus) "_" species)]
       (.mkdir (io/file dir))
       (println "saving" (count imgs) "images to dir" dir)
       (doall
