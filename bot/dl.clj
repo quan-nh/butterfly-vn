@@ -25,8 +25,9 @@
                                                     genus (str/lower-case species)]))
                                 (catch Exception e
                                   (println "caught exception: " (.getMessage e))
-                                  {:vn_name (str genus (str/lower-case species))}))]
-    [vn_name (str genus (str/lower-case species) " - " score) url]))
+                                  {:vn_name (str genus " " (str/lower-case species))
+                                   :url "http://www.vncreatures.net/hinhanh.php?nhom=1&loai=3"}))]
+    [vn_name (str genus " " (str/lower-case species) " - " score) url]))
 
 (defn- label-image [image-url]
   (let [{:keys [status body]} @(http/get dl-server
