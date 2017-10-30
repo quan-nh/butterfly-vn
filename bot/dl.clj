@@ -10,7 +10,7 @@
 
 (def db-spec {:classname "org.sqlite.JDBC"
               :subprotocol "sqlite"
-              :subname (str (io/resource "butterfly.db"))})
+              :subname (.getPath (io/file (io/resource "butterfly.db")))})
 
 (defn- url-encode [url] (some-> url (java.net.URLEncoder/encode "UTF-8") (.replace "+" "%20")))
 
