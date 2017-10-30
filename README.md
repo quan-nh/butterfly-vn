@@ -7,4 +7,4 @@ A Messenger bot try to predict butterflies of Vietnam, at **Species** level (for
 
 ![messenger](img_2125.png)
 
-[*] butterfly image: https://twitter.com/kyanh/status/761781201657065472
+** test image from [this](https://twitter.com/kyanh/status/761781201657065472)
