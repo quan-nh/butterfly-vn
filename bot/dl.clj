@@ -10,18 +10,22 @@
 
 (def db-spec {:classname "org.sqlite.JDBC"
               :subprotocol "sqlite"
-              :subname (.getPath (io/file (io/resource "butterfly.db")))})
+              :subname "./butterfly.db"})
 
 (defn- url-encode [url] (some-> url (java.net.URLEncoder/encode "UTF-8") (.replace "+" "%20")))
 
 (defn- parse-result [body]
   (let [{:keys [label score]} (first (json/decode body true))
         [genus species] (str/split label #" ")
-        {:keys [vn_name url]} (first (jdbc/query db-spec
-                                                 ["SELECT vn_name, url
+        {:keys [vn_name url]} (try
+                                (first (jdbc/query db-spec
+                                                   ["SELECT vn_name, url
                                                    FROM butterfly
                                                    WHERE genus = ? AND species = ?"
-                                                   genus (str/lower-case species)]))]
+                                                    genus (str/lower-case species)]))
+                                (catch Exception e
+                                  (println "caught exception: " (.getMessage e))
+                                  {:vn_name (str genus (str/lower-case species))}))]
     [vn_name (str genus (str/lower-case species) " - " score) url]))
 
 (defn- label-image [image-url]
