@@ -6,3 +6,5 @@ Send butterfly photo & get information back at **Species** level (ref this [Clas
 - Data stats: [r.txt](r.txt)
 
 ![messenger](img_2125.png)
+
+[*] butterfly image: https://twitter.com/kyanh/status/761781201657065472
