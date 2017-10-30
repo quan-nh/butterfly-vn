@@ -60,7 +60,8 @@
   (prn @visited-links)
   (prn @error-links))
 
-;mv data-ifoundbutterflies/Papilio-clytia data-ifoundbutterflies/Chilasa-clytia
+;mv data-ifoundbutterflies/Papilio_clytia data-ifoundbutterflies/Chilasa_clytia
+;mv data-ifoundbutterflies/Eurema_andersoni data-ifoundbutterflies/Eurema_andersonii
 ;(crop-images "../data-ifoundbutterflies" "../data" 10 65)
 
 (defn insert-db []
@@ -77,4 +78,7 @@
                                            :common_name common-name})))
   (jdbc/update! db/db-spec :butterfly
                 {:genus "Chilasa"}
-                ["genus = ? AND species = ?" "Papilio" "clytia"]))
+                ["genus = ? AND species = ?" "Papilio" "clytia"])
+  (jdbc/update! db/db-spec :butterfly
+                {:species "andersonii"}
+                ["genus = ? AND species = ?" "Eurema" "andersoni"]))
