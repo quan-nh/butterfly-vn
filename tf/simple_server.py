@@ -16,9 +16,10 @@ class simpleHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
     if parsed_path.path == '/label_image' and 'image_url' in parsed_path.query:
       image_url = unquote(parse_qs(parsed_path.query)['image_url'][0])
+      no_predict = parse_qs(parsed_path.query).get('no_predict', ["2"])[0]
 
       try:
-        image_label = label_image(image_url)
+        image_label = label_image(image_url, int(no_predict))
         json_string = json.dumps(image_label)
         print(image_url)
         print(json_string)

@@ -51,8 +51,8 @@ labels = load_labels('output_labels.txt')
 load_graph('output_graph.pb')
 
 
-def label_image(image_url):
+def label_image(image_url, no_predict):
   # load image
   image_data = load_image(image_url)
 
-  return run_graph(image_data, labels, 'DecodeJpeg/contents:0', 'final_result:0', 2)
+  return run_graph(image_data, labels, 'DecodeJpeg/contents:0', 'final_result:0', no_predict)

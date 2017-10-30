@@ -7,7 +7,9 @@
                  [ring/ring-core "1.6.2"]
                  [ring/ring-json "0.5.0-beta1"]
                  [compojure "1.6.0"]
-                 [http-kit "2.2.0"]]
+                 [http-kit "2.2.0"]
+                 [org.clojure/java.jdbc "0.7.3"]
+                 [org.xerial/sqlite-jdbc "3.20.1"]]
   :source-paths ["bot"]
   :resource-paths ["db"]
   :uberjar-name "messenger-bot-standalone.jar"

@@ -1,21 +1,32 @@
 (ns dl
   (:require [clojure.core.memoize :as memo]
+            [clojure.string :as str]
+            [clojure.java.jdbc :as jdbc]
             [cheshire.core :as json]
             [org.httpkit.client :as http]))
 
 (def dl-server (System/getenv "DL_SERVER"))
 
+(def db-spec {:classname "org.sqlite.JDBC"
+              :subprotocol "sqlite"
+              :subname "butterfly.db"})
+
 (defn- url-encode [url] (some-> url (java.net.URLEncoder/encode "UTF-8") (.replace "+" "%20")))
 
 (defn- parse-result [body]
-  (let [[r1 r2] (json/decode body true)
-        text (str (:label r1) " - " (:score r1) "\n" (:label r2) " - " (:score r2))
-        web-url (str "http://www.vncreatures.net/hinhanh.php?nhom=1&loai=3&lang=L&s2=Tra+c%E1%BB%A9u+%E1%BA%A3nh&keyword=" (:label r1))]
-    [text web-url]))
+  (let [{:keys [label score]} (first (json/decode body true))
+        [genus species] (str/split label #" ")
+        {:keys [vn_name url]} (first (jdbc/query db-spec
+                                                 ["SELECT vn_name, url
+                                                   FROM butterfly
+                                                   WHERE genus = ? AND species = ?"
+                                                   genus (str/lower-case species)]))]
+    [vn_name (str genus (str/lower-case species) " - " score) url]))
 
 (defn- label-image [image-url]
   (let [{:keys [status body]} @(http/get dl-server
-                                         {:query-params {:image_url (url-encode image-url)}})]
+                                         {:query-params {:image_url (url-encode image-url)
+                                                         :no_predict 1}})]
     (if (= 200 status)
       [status (parse-result body)]
       [status body])))

@@ -22,11 +22,11 @@
       
     :else nil))
 
-(defn generic-template [text image-url web-url]
+(defn generic-template [title subtitle image-url web-url]
   {:type "template"
    :payload {:template_type "generic"
-             :elements [{:title "Giống (chi)"
-                         :subtitle text
+             :elements [{:title title
+                         :subtitle subtitle
                          :image_url image-url
                          :buttons [{:type "web_url"
                                     :url web-url

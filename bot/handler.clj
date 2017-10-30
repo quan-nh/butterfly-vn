@@ -18,8 +18,8 @@
     (let [[status body] (dl/memo-label-image image-url)]
       (case status
         200
-        (let [[text web-url] body
-              template (fb/generic-template text image-url web-url)]
+        (let [[vn-name predict-result web-url] body
+              template (fb/generic-template vn-name predict-result image-url web-url)]
           (fb/send-message sender-psid
                            {:attachment template}))
 
