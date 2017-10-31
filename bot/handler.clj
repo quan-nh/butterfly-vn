@@ -13,37 +13,47 @@
     challenge
     {:status 403}))
 
-(defn handle-message [sender-psid {:keys [text nlp attachments]}]
-  (let [greeting (first (get-in nlp [:entities :greeting]))
-        image-url (or (fb/attachment-url (first attachments))
+(defn- response-result [image-url]
+  (let [[status body] (dl/memo-label-image image-url)]
+    (case status
+      200
+      (let [[vn-name predict-result web-url] body
+            template (fb/generic-template vn-name predict-result image-url web-url)]
+        (fb/send-message sender-psid
+                         {:attachment template}))
+
+      400
+      (fb/send-message sender-psid
+                       {:text "I can't see Butterfly in your message. Make sure your message has a butterfly image link, or you can send an image directly!"})
+
+      (fb/send-message sender-psid
+                       {:text "Oops! Something went wrong."}))))
+
+(defn- handle-message [sender-psid {:keys [text nlp attachments]}]
+  (let [image-url (or (fb/attachment-url (first attachments))
                       (some->> text (re-find #"https?://\S+")))]
     (cond
-      (some-> greeting :confidence (> 0.8))
+      (some-> nlp :entities :greeting first :confidence (> 0.8))
       (fb/send-message sender-psid
                        {:text "Xin chào!"})
 
+      (some-> nlp :entities :test first :confidence (> 0.8))
+      (let [user-profile (fb/memo-user-profile sender-psid)]
+        (response-result (:profile_pic user-profile)))
+
       image-url
-      (let [[status body] (dl/memo-label-image image-url)]
-        (case status
-          200
-          (let [[vn-name predict-result web-url] body
-                template (fb/generic-template vn-name predict-result image-url web-url)]
-            (fb/send-message sender-psid
-                             {:attachment template}))
-
-          400
-          (fb/send-message sender-psid
-                           {:text "I can't see Butterfly in your message. Make sure your message has a butterfly image link, or you can send an image directly!"})
-
-          (fb/send-message sender-psid
-                           {:text "Oops! Something went wrong."})))
+      (response-result image-url)
 
       :else
       (fb/send-message sender-psid
                        {:text "Send me your butterfly photo and we will help you classify it at Species level."}))))
 
-(defn handle-postback [sender-psid {:keys [payload]}]
+(defn- handle-postback [sender-psid {:keys [payload]}]
   (case payload
+    "get_started"
+    (fb/send-message sender-psid
+                     {:text "Send me your butterfly photo and we will help you classify it at Species level."})
+
     "yes"
     (fb/send-message sender-psid
                      {:text "Thanks!"})

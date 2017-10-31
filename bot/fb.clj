@@ -1,5 +1,6 @@
 (ns fb
-  (:require [clojure.java.io :as io]
+  (:require [clojure.core.memoize :as memo]
+            [clojure.java.io :as io]
             [clojure.string :as str]
             [cheshire.core :as json]
             [org.httpkit.client :as http]))
@@ -19,7 +20,7 @@
                      first
                      second)]
       (some-> u (java.net.URLDecoder/decode "UTF-8")))
-      
+
     :else nil))
 
 (defn generic-template [title subtitle image-url web-url]
@@ -48,14 +49,36 @@
                (when error
                  (println "Failed, exception is " error)))))
 
-(defn greeting
-  "docs https://developers.facebook.com/docs/messenger-platform/thread-settings/greeting-text/"
-  []
-  (http/post "https://graph.facebook.com/v2.6/me/thread_settings"
-             {:query-params {:access_token page-access-token}
-              :headers {"Content-Type" "application/json"}
-              :body (json/encode {:setting_type "greeting"
-                                  :greeting {:text "Hi {{user_first_name}}, welcome to Butterfly World.\nSend me your butterfly photo and we will help you classify it at Genus level."}})}
-             (fn [{:keys [error]}]
-               (when error
-                 (println "Failed, exception is " error)))))
+(defn- user-profile
+  "Retrieving a Person's Profile"
+  [psid]
+  (let [{:keys [error body]} @(http/get (str "https://graph.facebook.com/v2.6/" psid)
+                                        {:query-params {:fields "first_name,last_name,profile_pic"
+                                                        :access_token page-access-token}})]
+    (when-not error
+      (json/decode body true))))
+
+(def memo-user-profile (memo/lu user-profile))
+
+;; settings
+;; https://developers.facebook.com/docs/messenger-platform/reference/messenger-profile-api/
+(defn get-started []
+  (let [{:keys [error body]} @(http/post "https://graph.facebook.com/v2.6/me/messenger_profile"
+                                         {:query-params {:access_token page-access-token}
+                                          :headers {"Content-Type" "application/json"}
+                                          :body (json/encode {:get_started
+                                                              {:payload "get_started"}})})]
+    (if error
+      (println "Failed, exception is " error)
+      (println body))))
+
+(defn greeting []
+  (let [{:keys [error body]} @(http/post "https://graph.facebook.com/v2.6/me/messenger_profile"
+                                         {:query-params {:access_token page-access-token}
+                                          :headers {"Content-Type" "application/json"}
+                                          :body (json/encode {:greeting
+                                                              [{:locale "default"
+                                                                :text "Hãy cho chúng tôi thấy Bướm của bạn,\nChúng tôi sẽ cho bạn biết Bướm bạn thuộc Loài nào!"}]})})]
+    (if error
+      (println "Failed, exception is " error)
+      (println body))))
