@@ -1,5 +1,6 @@
 (ns handler
   (:require [clojure.string :as str]
+            [clojure.pprint :refer [pprint]]
             [dl] [fb]))
 
 (def verify-token (System/getenv "VERIFY_TOKEN"))
@@ -44,7 +45,7 @@
                      {:text "Oops! Try sending another image."})))
 
 (defn handle-event [{:keys [body]}]
-  (clojure.pprint/pprint body)
+  (pprint body)
   (if (= "page" (:object body))
     (do
       (doseq [entry (:entry body)]
