@@ -1,220 +1,225 @@
 
-|                        :vn_name |          :genus |      :species | :no-imgs | :train? |
-|---------------------------------+-----------------+---------------+----------+---------|
-|            Bướm mắt rắn bay đêm |       Melanitis |          leda |      220 |       ✅ |
-|                    Bướm lãng tử |       Castalius |       rosimon |      186 |       ✅ |
-|               Bướm cam đuôi dài |         Papilio |       polytes |      175 |       ✅ |
-|                Bướm chanh di cư |      Catopsilia |        pomona |      173 |       ✅ |
-|                 Bướm phượng cam |         Papilio |      demoleus |      169 |       ✅ |
-|                     Bướm hổ cam |          Danaus |    chrysippus |      167 |       ✅ |
-|               Bướm mạo danh nhỏ |      Hypolimnas |      misippus |      153 |       ✅ |
-|                    Bướm hại tuế |        Chilades |       pandava |      149 |       ✅ |
-|              Bướm hoa đuôi công |         Junonia |        almana |      149 |       ✅ |
-|    Bướm xanh tím dải trắng rộng |        Lampides |      boeticus |      147 |       ✅ |
-|                    Bướm hoa nâu |         Junonia |      lemonias |      144 |       ✅ |
-|               Bướm nhãn lồng đỏ |          Acraea |        violae |      139 |       ✅ |
-|                  Bướm lính thủy |          Neptis |         hylas |      139 |       ✅ |
-|       Bướm xanh nhỏ chấm thường |          Zizina |          otis |      137 |       ✅ |
-|                 Bướm lang thang |       Pareronia |        hippia |      135 |       ✅ |
-|          Bướm quạ chót cánh bạc |         Euploea |          core |      135 |       ✅ |
-|                   Bướm xanh lục |  Pseudozizeeria |          maha |      135 |       ✅ |
-|       Bướm sọc bạc thông thường |       Spindasis |      vulcanus |      131 |       ✅ |
-|                Bướm nhỏ bốn mắt |         Ypthima |      huebneri |      129 |       ✅ |
-|                 Bướm màu cà rốt |          Loxura |       atymnus |      127 |       ✅ |
-|                    Bướm báo hoa |        Phalanta |     phalantha |      124 |       ✅ |
-|         Bướm cánh vàng viền đen |          Eurema |        hecabe |      123 |       ✅ |
-|                 Bướm nâu ba đốm |        Euthalia |      aconthea |      121 |       ✅ |
-|                     Bướm hổ vằn |          Danaus |       genutia |      121 |       ✅ |
-|                       Bướm lông |        Leptosia |          nina |      116 |       ✅ |
-|                Bướm năm đốm mắt |         Ypthima |        baldus |      116 |       ✅ |
-|               Bướm sọc bạc liền |       Spindasis |        lohita |      114 |       ✅ |
-|              Bướm phấn vàng cam |           Ixias |        pyrene |      114 |       ✅ |
-|                    Bướm hổ xanh |        Tirumala |      limniace |      112 |       ✅ |
-|              Bướm hoa xanh ngọc |         Junonia |       orithya |      109 |       ✅ |
-|                  Bướm đuôi chim |        Graphium |     agamemnon |      106 |       ✅ |
-|                      Bướm ma cỏ |         Udaspes |         folus |      106 |       ✅ |
-|                 Bướm màu socola |         Junonia |        iphita |      105 |       ✅ |
-|                 Bướm ngụy trang |         Chilasa |        clytia |      101 |       ✅ |
-|                     Bướm hổ đốm |       Parantica |         aglea |      101 |       ✅ |
-|                Bướm cánh bản đồ |        Cyrestis |     thyodamas |       99 |       ✅ |
-|             Bướm cỏ cánh sau đỏ |        Talicada |        nyseus |       99 |       ✅ |
-|               Bướm cánh vân hoa |         Junonia |       atlites |       96 |       ✅ |
-|               Bướm nhỏ tím xanh |        Prosotas |       dubiosa |       94 |       ✅ |
-|            Bướm xám nhỏ có đuôi |         Megisba |        malaya |       89 |       ✅ |
-|                   Bướm hoa vàng |         Junonia |        hierta |       89 |       ✅ |
-|                   Bướm ngô xanh |          Zeltus |         amasa |       89 |       ✅ |
-|                   Bướm đốm xanh |        Tirumala | septentrionis |       87 |       ✅ |
-|                    Bướm nâu lớn |          Appias |       lyncida |       83 |       ✅ |
-|                   Bướm giáp lớn |         Vindula |         erota |       82 |       ✅ |
-|         Bướm xám nhỏ không đuôi |    Neopithecops |       zalmora |       82 |       ✅ |
-|                   Bướm hoa xanh |        Graphium |         doson |       81 |       ✅ |
-|                Bướm xám bốn mắt |     Orsotriaena |         medus |       80 |       ✅ |
-|                    Bướm chỉ huy |          Moduza |       procris |       79 |       ✅ |
-|                Bướm phượng pari |         Papilio |         paris |       79 |       ✅ |
-|         Bướm cỏ hoàng đế thường |        Cheritra |         freja |       77 |       ✅ |
-|                Bướm tím sapphia |     Heliophorus |       epicles |       77 |       ✅ |
-|         Bướm nhảy mắt đỏ thường |          Matapa |          aria |       77 |       ✅ |
-|               Bướm báo hoa vàng |        Cethosia |         cyane |       76 |       ✅ |
-|                   Bướm mòng nhỏ |          Cepora |        nadina |       75 |       ✅ |
-|       Bướm lông mượt không chấm |         Ariadne |       merione |       74 |       ✅ |
-|               Bướm giáp đa hình |         Euripus |     nyctelius |       74 |       ✅ |
-|                   Bướm giáp mộc |           Cupha |    erymanthis |       73 |       ✅ |
-|           Bướm cánh vàng ba vệt |          Eurema |        blanda |       72 |       ✅ |
-|                 Bướm phượng lớn |         Papilio |        memnon |       71 |       ✅ |
-|           Bướm phượng thân hồng |      Pachliopta | aristolochiae |       70 |       ✅ |
-|               Bướm tím hai đuôi |     Hypolycaena |        erylus |       69 |       ✅ |
-|                    Bướm nâu nhỏ |         Zemeros |       flegyas |       69 |       ✅ |
-|          Bướm nam tước lòe loẹt |        Euthalia |     lubentina |       67 |       ✅ |
-|                  Bướm trắng lớn |        Hebomoia |     glaucippe |       66 |       ✅ |
-|                  Bướm lông xanh |         Anthene |        emolus |       65 |       ✅ |
-|                Bướm hổ đuôi nhỏ |     Symbrenthia |        lilaea |       63 |       ✅ |
-|                 Bướm cánh tuyết |        Tagiades |     litigiosa |       63 |       ✅ |
-|                        Bướm cau |        Elymnias |  hypermnestra |       62 |       ✅ |
-|              Bướm phượng hê len |         Papilio |       helenus |       61 |       ✅ |
-|             Bướm cánh đốm loang |        Tagiades |          gana |       60 |       ✅ |
-|                   Bướm kim vàng |          Acraea |       issoria |       60 |       ✅ |
-|               Bướm nâu đuôi bạc |        Tanaecia |       lepidea |       58 |       ✅ |
-|              Bướm nhảy nâu hung | Pseudocoladenia |           dan |       58 |       ✅ |
-|                    Bướm lá vàng |    Doleschallia |     bisaltide |       58 |       ✅ |
-|                Bướm mũ quan tòa |        Libythea |        myrrha |       58 |       ✅ |
-|                Bướm tre nâu đốm |           Lethe |        europa |       58 |       ✅ |
-|              Bướm chiều nâu tối |       Melanitis |       phedima |       57 |       ✅ |
-|               Bướm hoàng tử đen |          Rohana |     parisatis |       56 |       ✅ |
-|               Bướm đốm xanh lớn |         Euploea |      mulciber |       54 |       ✅ |
-|           Bướm phượng đuôi nheo |     Lamproptera |        curius |       53 |       ✅ |
-|                 Bướm hình khiên |       Parthenos |        sylvia |       52 |       ✅ |
-|          Bướm băng vàng dải cam |      Pantoporia |      hordonia |       51 |       ✅ |
-|               Bướm giáp ba vạch |         Kaniska |        canace |       51 |       ✅ |
-|     Bướm giáp ngọc chót râu đen |          Lexias |        dirtea |       50 |       ✅ |
-|          Bướm sọc trắng vạch đỏ |          Athyma |   selenophora |       49 |       ✅ |
-|                 Bướm đuôi berna |        Charaxes |     bernardus |       49 |       ✅ |
-|             Bướm bụng sọc trắng |          Athyma |        perius |       48 |       ✅ |
-|               Bướm xanh vệt bạc |          Iraota |      timoleon |       48 |       ✅ |
-|          Bướm bụi nâu dải trắng |       Mycalesis |       anaxias |       47 |       ✅ |
-|                  Bướm chai xanh |        Graphium |      sarpedon |       47 |       ✅ |
-|       Bướm thượng sỹ nhiều răng |          Athyma |         ranga |       47 |       ✅ |
-|           Bướm nâu gân cánh đen |          Appias |      libythea |       47 |       ✅ |
-|               Bướm nâu cánh bạc |        Euthalia |        monina |       44 |       ✅ |
-|      Bướm bản đồ nhỏ nâu cam đỏ |     Chersonesia |          risa |       43 |       ✅ |
-|           Bướm hề vạch gấp khúc |          Caleta |          elna |       42 |       ✅ |
-|                      Bướm loang |          Delias |      pasithoe |       42 |       ✅ |
-|           Bướm cánh phượng kiếm |        Graphium |    antiphates |       42 |       ✅ |
-|   Bướm lính thủy sọc trắng ngắn |        Phaedyma |     columella |       42 |       ✅ |
-|                   Bướm ngựa vằn |         Jamides |        alecto |       41 |       ✅ |
-|                Bướm hề dải xanh |      Discolampa |        ethion |       40 |       ✅ |
-|                Bướm cây nâu sọc |           Lethe |         verma |       40 |       ✅ |
-|                    Bướm hiệp sỹ |         Lebadea |        martha |       40 |       ✅ |
-|                   Bướm màu đồng |          Rapala |     pheretima |       40 |       ✅ |
-|                  Bướm lông mượt |         Ariadne |       ariadne |       39 |       ✅ |
-|         Bướm cánh hình lưỡi cưa |       Prioneris |     thestylis |       38 |       ✅ |
-|      Bướm phượng bốn mảng trắng |         Papilio |      nephelus |       37 |       ✅ |
-|            Bướm nhảy vạch trắng |      Notocrypta |     paralysos |       37 |       ✅ |
-|           Bướm phượng đen tuyền |         Papilio |        bianor |       37 |       ✅ |
-|                 Bướm báo hoa đỏ |        Cethosia |        biblis |       37 |       ✅ |
-|                Bướm bụi nâu đen |       Mycalesis |        mineus |       36 |       ✅ |
-|              Bướm nâu đuôi xanh |        Tanaecia |         julii |       35 |       ✅ |
-|            Bướm phượng xanh lớn |         Papilio |      protenor |       34 |       ✅ |
-|               Bướm cánh viền đỏ |          Delias |      hyparete |       34 |       ✅ |
-|                       Bướm đuôi |         Vagrans |        egista |       33 |       ✅ |
-|         Bướm cối xay gió thường |           Byasa |    polyeuctes |       33 |       ✅ |
-| Bướm phượng cánh chim chấm liền |         Troides |        helena |       33 |       ✅ |
-|                       Bướm trúc |      Discophora |      sondaica |       33 |       ✅ |
-|       Bướm thiên đường rừng rậm |      Thaumantis |        diores |       33 |       ✅ |
-|           Bướm nữ hoàng  đốm đỏ |          Delias |    descombesi |       32 |       ✅ |
-|                   Bướm gia đình |      Cirrochroa |         tyche |       31 |       ✅ |
-|              Bướm cánh sọc chéo |           Lethe |       confusa |       31 |       ✅ |
-|        Bướm nhảy cuối cánh vàng |        Mooreana |   trichoneura |       29 |         |
-|            Bướm hổ gân cánh đen |          Danaus |    melanippus |       27 |         |
-|      Bướm cánh bản đồ cẩm thạch |        Cyrestis |        cocles |       27 |         |
-|                Bướm hổ cánh nâu |       Parantica |          sita |       26 |         |
-|           Bướm bụi thông thường |       Mycalesis |       perseus |       25 |         |
-|                  Bướm nhảy rừng |   Astictopterus |          jama |       24 |         |
-|                Bướm sọc bạc đứt |       Spindasis |         syama |       23 |         |
-|                 Bướm đuôi mamax |        Charaxes |        marmax |       23 |         |
-|              Bướm thượng sỹ nhỏ |          Athyma |        zeroca |       22 |         |
-|         Bướm thượng sỹ cam vàng |          Athyma |          cama |       22 |         |
-|                    Bướm quạ lớn |         Euploea |   radamanthus |       22 |         |
-|                 Bướm nâu thường |          Faunis |        canens |       21 |         |
-|    Bướm nam tước chóp đuôi xanh |        Euthalia |       phemius |       21 |         |
-|         Bướm nữ hoàng cánh vàng |          Delias |      agostina |       20 |         |
-|                Bướm cuốn lá lớn |       Pelopidas |          agna |       20 |         |
-|  Bướm phượng cánh chim chấm rời |         Troides |        aeacus |       20 |         |
-|      Bướm phượng đuôi kiếm xích |        Graphium |      aristeus |       19 |         |
-|        Bướm nhảy chấm trắng nhỏ |          Hasora |         vitta |       19 |         |
-|               Bướm chiều mắt đỏ |          Matapa |     sasivarna |       19 |         |
-|                Bướm báo hoa nhỏ |        Phalanta |       alcippe |       19 |         |
-|               Bướm ngựa vằn lớn |        Graphium |      xenocles |       18 |         |
-|        Bướm xích trắng nhân đen |          Athyma |         asura |       18 |         |
-|            Bướm phượng dải xanh |         Papilio |      demolion |       18 |         |
-|                    Bướm màu cam |          Yasoda |   tripunctata |       17 |         |
-|            Bướm chiều đốm tuyết |        Tagiades |        menaka |       17 |         |
-|         Bướm dải trắng chóp cam |          Athyma |         nefte |       17 |         |
-|      Bướm phượng xanh đuôi nheo |     Lamproptera |         meges |       16 |         |
-|            Bướm chúa hại cọ dầu |       Amathusia |     phidippus |       16 |         |
-|      Bướm giáp ngọc chót râu đỏ |          Lexias |      pardalis |       16 |         |
-|           Bướm nâu hai đốm vàng |          Faunis |        eumeus |       15 |         |
-|    Bướm quạ cánh trước xanh đậm |         Euploea |         algea |       15 |         |
-|        Bướm ngựa vằn trung bình |        Graphium |      macareus |       15 |         |
-|             Bướm lính thủy vàng |          Neptis |          miah |       15 |         |
-|        Bướm mắt rắn vằn bảy đốm |         Ragadia |      crisilda |       15 |         |
-|                   Bướm tia nắng |         Curetis |         bulis |       15 |         |
-|        Bướm cỏ hoa thông thường |        Drupadia |      ravindra |       14 |         |
-|                Bướm gốc cánh đỏ |       Prioneris |     philonome |       13 |         |
-|                  Bướm ê ke xanh |        Graphium |     eurypylus |       12 |         |
-|              Bướm hề vạch thẳng |          Caleta |         roxus |       12 |         |
-|   Bướm phượng đuôi kiếm răng tù |     Teinopalpus |    imperialis |       12 |         |
-|      Bướm kim cương huyền thoại |     Amathuxidia |      amythaon |       11 |         |
-|                  Bướm cam di cư |      Catopsilia |        scylla |       11 |         |
-|          Bướm viền nâu hai đuôi |     Hypolycaena |    thecloides |       10 |         |
-|               Bướm đốm xanh nhỏ |         Euploea |     tulliolus |       10 |         |
-|            Bướm mắt rắn đa hình |           Neope |      armandii |        9 |         |
-|               Bướm ngựa vằn nhỏ |        Graphium |       megarus |        9 |         |
-|                    Bướm tím nhỏ |         Terinos |     terpander |        9 |         |
-|         Bướm phượng hê len xanh |         Papilio |     prexaspes |        9 |         |
-|                  Bướm chúa rừng |         Thauria |        aliris |        8 |         |
-|               Bướm nữ thần vàng |          Aemona |     amathusia |        8 |         |
-|          Bướm vàng băng cam nhỏ |      Pantoporia |       sandaka |        8 |         |
-|           Bướm hổ gốc cánh vàng |       Parantica |       aspasia |        7 |         |
-|          Bướm lá khô vạch trắng |         Kallima |  albofasciata |        6 |         |
-|          Bướm mắt rắn cánh xanh |        Coelites |        nothis |        5 |         |
-|        Bướm chúa rừng nhiệt đới |  Stichophthalma |       uemurai |        4 |         |
-|               Bướm đen đốm vàng |         Polyura |       athamas |        4 |         |
-|                Bướm cỏ đốm xanh |        Ideopsis |       similis |        4 |         |
-|             Bướm giáp cánh ngọc |         Polyura |       delphis |        4 |         |
-|         Bướm giáp nâu xanh nhạt |         Polyura |          arja |        4 |         |
-|         Bướm hề đỏ thông thường |      Paralaxita |       telesia |        4 |         |
-|                 Bướm hải âu cam |          Appias |          nero |        4 |         |
-|         Bướm hoàng đế trằng sữa |       Neomyrina |         nivea |        4 |         |
-|                        Bướm khế |         Attacus |         atlas |        4 |         |
-|                     Bướm lá khô |         Kallima |        alicia |        4 |         |
-|                    Bướm lá xanh |      Amblipodia |         anita |        4 |         |
-|             Bướm mòng cánh vàng |          Cepora |        iudith |        4 |         |
-|        Bướm mắt rắn rừng thường |           Lethe |        insana |        4 |         |
-|               Bướm nữ chúa rừng |  Stichophthalma |        howqua |        4 |         |
-|                    Bướm năm mắt |           Lethe |        syrcis |        4 |         |
-|           Bướm nam tước đuôi đỏ |        Euthalia |         recta |        4 |         |
-|           Bướm nam tước chấm đỏ |        Euthalia |       evelina |        4 |         |
-|         Bướm phù thuỷ rừng xanh |         Hestina |          nama |        4 |         |
-|              Bướm quạ miến điện |         Papilio |      mahadeva |        4 |         |
-|         Bướm thầu dầu lông mượt |        Argyreus |     hyperbius |        4 |         |
-|         Bướm đen hai chấm trắng |          Lexias |  albopunctata |        3 |         |
-|               Bướm hổ bụng vàng |       Parantica |      swinhoei |        3 |         |
-|   Bướm mạo danh vạch ngang xanh |         Chilasa |       slateri |        3 |         |
-|          Bướm nâu sọc cánh vàng |            Yoma |        sabina |        3 |         |
-|                  Bướm cánh rộng |      Hypolimnas |        bolima |        2 |         |
-|                 Bướm cỏ nâu đen |      Nothodanis |    schaeffera |        2 |         |
-|     Bướm đuôi dài xanh lá chuối |          Argema |        maenas |        1 |         |
-|         Bướm đuôi kiếm bốn vạch |         Pathysa |        agetes |        1 |         |
-|              Bướm bản đồ thường |        Cyrestis |      themires |        1 |         |
-|             Bướm cánh sọc trắng |          Neptis |         clina |        1 |         |
-|                    Bướm hại mai |          Neptis |     columella |        1 |         |
-|               Bướm nhảy màu nâu |         Lambrix |       salsala |        1 |         |
-|        Bướm nhảy nâu chấm trắng |           Sovia |     albipecta |        1 |         |
-|            Bướm phượng đuôi kem |         Papilio |        noblei |        1 |         |
-| Bướm phượng đuôi kiếm răng nhọn |     Teinopalpus |        aureus |        1 |         |
-|     Bướm phượng dài đuôi thường |    Atrophaneura |          coon |        1 |         |
-|                    Bướm tím lớn |         Terinos |      clarissa |        1 |         |
-|          Bướm tím than hai đuôi |        Chliaria |        othona |        1 |         |
-|              Bướm nâu cánh vàng |  Celaenorrhinus |  aurivittatus |        0 |         |
-|         Bướm phượng đuôi lá cải |           Byasa |     crassipes |        0 |         |
-|         Bướm rừng đuôi trái đào |        Zeuxidia |        masoni |        0 |         |
+|                        :vn-name |                    :name | :no-imgs | :no-vn-imgs | :train? |
+|---------------------------------+--------------------------+----------+-------------+---------|
+|            Bướm mắt rắn bay đêm |           Melanitis_leda |      220 |           3 |       ✅ |
+|                    Bướm lãng tử |        Castalius_rosimon |      186 |           4 |       ✅ |
+|               Bướm cam đuôi dài |          Papilio_polytes |      175 |           6 |       ✅ |
+|                Bướm chanh di cư |        Catopsilia_pomona |      173 |           5 |       ✅ |
+|                 Bướm phượng cam |         Papilio_demoleus |      169 |           5 |       ✅ |
+|                     Bướm hổ cam |        Danaus_chrysippus |      167 |           4 |       ✅ |
+|               Bướm mạo danh nhỏ |      Hypolimnas_misippus |      153 |           2 |       ✅ |
+|                    Bướm hại tuế |         Chilades_pandava |      149 |           1 |       ✅ |
+|              Bướm hoa đuôi công |           Junonia_almana |      149 |           4 |       ✅ |
+|    Bướm xanh tím dải trắng rộng |        Lampides_boeticus |      147 |           1 |       ✅ |
+|                    Bướm hoa nâu |         Junonia_lemonias |      144 |           4 |       ✅ |
+|               Bướm nhãn lồng đỏ |            Acraea_violae |      139 |           4 |       ✅ |
+|                  Bướm lính thủy |             Neptis_hylas |      139 |           4 |       ✅ |
+|                                 |           Cepora_nerissa |      137 |           1 |       ✅ |
+|       Bướm xanh nhỏ chấm thường |              Zizina_otis |      137 |           1 |       ✅ |
+|          Bướm quạ chót cánh bạc |             Euploea_core |      135 |           5 |       ✅ |
+|                 Bướm lang thang |         Pareronia_hippia |      135 |           5 |       ✅ |
+|                   Bướm xanh lục |      Pseudozizeeria_maha |      135 |           1 |       ✅ |
+|       Bướm sọc bạc thông thường |       Spindasis_vulcanus |      131 |           1 |       ✅ |
+|                Bướm nhỏ bốn mắt |         Ypthima_huebneri |      129 |           1 |       ✅ |
+|                 Bướm màu cà rốt |           Loxura_atymnus |      127 |           4 |       ✅ |
+|                    Bướm báo hoa |       Phalanta_phalantha |      124 |           3 |       ✅ |
+|         Bướm cánh vàng viền đen |            Eurema_hecabe |      123 |           5 |       ✅ |
+|                     Bướm hổ vằn |           Danaus_genutia |      121 |           4 |       ✅ |
+|                 Bướm nâu ba đốm |        Euthalia_aconthea |      121 |           4 |       ✅ |
+|                       Bướm lông |            Leptosia_nina |      116 |           5 |       ✅ |
+|                Bướm năm đốm mắt |           Ypthima_baldus |      116 |           1 |       ✅ |
+|              Bướm phấn vàng cam |             Ixias_pyrene |      114 |           5 |       ✅ |
+|               Bướm sọc bạc liền |         Spindasis_lohita |      114 |           1 |       ✅ |
+|                    Bướm hổ xanh |        Tirumala_limniace |      112 |           4 |       ✅ |
+|              Bướm hoa xanh ngọc |          Junonia_orithya |      109 |           4 |       ✅ |
+|                  Bướm đuôi chim |       Graphium_agamemnon |      106 |           5 |       ✅ |
+|                      Bướm ma cỏ |            Udaspes_folus |      106 |           2 |       ✅ |
+|                 Bướm màu socola |           Junonia_iphita |      105 |           3 |       ✅ |
+|                 Bướm ngụy trang |           Chilasa_clytia |      101 |           5 |       ✅ |
+|                     Bướm hổ đốm |          Parantica_aglea |      101 |           2 |       ✅ |
+|                Bướm cánh bản đồ |       Cyrestis_thyodamas |       99 |           1 |       ✅ |
+|             Bướm cỏ cánh sau đỏ |          Talicada_nyseus |       99 |           4 |       ✅ |
+|               Bướm cánh vân hoa |          Junonia_atlites |       96 |           2 |       ✅ |
+|               Bướm nhỏ tím xanh |         Prosotas_dubiosa |       94 |           1 |       ✅ |
+|                   Bướm hoa vàng |           Junonia_hierta |       89 |           3 |       ✅ |
+|            Bướm xám nhỏ có đuôi |           Megisba_malaya |       89 |           1 |       ✅ |
+|                   Bướm ngô xanh |             Zeltus_amasa |       89 |           4 |       ✅ |
+|                   Bướm đốm xanh |   Tirumala_septentrionis |       87 |           5 |       ✅ |
+|                    Bướm nâu lớn |           Appias_lyncida |       83 |           5 |       ✅ |
+|                                 |             Eurema_laeta |       83 |           1 |       ✅ |
+|         Bướm xám nhỏ không đuôi |     Neopithecops_zalmora |       82 |           2 |       ✅ |
+|                   Bướm giáp lớn |            Vindula_erota |       82 |           4 |       ✅ |
+|                   Bướm hoa xanh |           Graphium_doson |       81 |           4 |       ✅ |
+|                Bướm xám bốn mắt |        Orsotriaena_medus |       80 |           1 |       ✅ |
+|                    Bướm chỉ huy |           Moduza_procris |       79 |           4 |       ✅ |
+|                Bướm phượng pari |            Papilio_paris |       79 |           7 |       ✅ |
+|         Bướm cỏ hoàng đế thường |           Cheritra_freja |       77 |           4 |       ✅ |
+|                Bướm tím sapphia |      Heliophorus_epicles |       77 |           4 |       ✅ |
+|         Bướm nhảy mắt đỏ thường |              Matapa_aria |       77 |           4 |       ✅ |
+|               Bướm báo hoa vàng |           Cethosia_cyane |       76 |           4 |       ✅ |
+|                   Bướm mòng nhỏ |            Cepora_nadina |       75 |           5 |       ✅ |
+|       Bướm lông mượt không chấm |          Ariadne_merione |       74 |           4 |       ✅ |
+|               Bướm giáp đa hình |        Euripus_nyctelius |       74 |           3 |       ✅ |
+|                   Bướm giáp mộc |         Cupha_erymanthis |       73 |           4 |       ✅ |
+|           Bướm cánh vàng ba vệt |            Eurema_blanda |       72 |           2 |       ✅ |
+|                 Bướm phượng lớn |           Papilio_memnon |       71 |           7 |       ✅ |
+|           Bướm phượng thân hồng | Pachliopta_aristolochiae |       70 |           4 |       ✅ |
+|               Bướm tím hai đuôi |       Hypolycaena_erylus |       69 |           2 |       ✅ |
+|                    Bướm nâu nhỏ |          Zemeros_flegyas |       69 |           1 |       ✅ |
+|          Bướm nam tước lòe loẹt |       Euthalia_lubentina |       67 |           4 |       ✅ |
+|                  Bướm trắng lớn |       Hebomoia_glaucippe |       66 |           4 |       ✅ |
+|                  Bướm lông xanh |           Anthene_emolus |       65 |           1 |       ✅ |
+|                Bướm hổ đuôi nhỏ |       Symbrenthia_lilaea |       63 |           2 |       ✅ |
+|                 Bướm cánh tuyết |       Tagiades_litigiosa |       63 |           1 |       ✅ |
+|                        Bướm cau |    Elymnias_hypermnestra |       62 |           4 |       ✅ |
+|              Bướm phượng hê len |          Papilio_helenus |       61 |           5 |       ✅ |
+|                   Bướm kim vàng |           Acraea_issoria |       60 |           4 |       ✅ |
+|             Bướm cánh đốm loang |            Tagiades_gana |       60 |           1 |       ✅ |
+|                    Bướm lá vàng |   Doleschallia_bisaltide |       58 |           3 |       ✅ |
+|                Bướm tre nâu đốm |             Lethe_europa |       58 |           4 |       ✅ |
+|                Bướm mũ quan tòa |          Libythea_myrrha |       58 |           1 |       ✅ |
+|              Bướm nhảy nâu hung |      Pseudocoladenia_dan |       58 |           1 |       ✅ |
+|               Bướm nâu đuôi bạc |         Tanaecia_lepidea |       58 |           4 |       ✅ |
+|              Bướm chiều nâu tối |        Melanitis_phedima |       57 |           4 |       ✅ |
+|               Bướm hoàng tử đen |         Rohana_parisatis |       56 |           2 |       ✅ |
+|               Bướm đốm xanh lớn |         Euploea_mulciber |       54 |           7 |       ✅ |
+|           Bướm phượng đuôi nheo |       Lamproptera_curius |       53 |           5 |       ✅ |
+|                 Bướm hình khiên |         Parthenos_sylvia |       52 |           3 |       ✅ |
+|               Bướm giáp ba vạch |           Kaniska_canace |       51 |           1 |       ✅ |
+|          Bướm băng vàng dải cam |      Pantoporia_hordonia |       51 |           1 |       ✅ |
+|     Bướm giáp ngọc chót râu đen |            Lexias_dirtea |       50 |           3 |       ✅ |
+|          Bướm sọc trắng vạch đỏ |       Athyma_selenophora |       49 |           2 |       ✅ |
+|                 Bướm đuôi berna |       Charaxes_bernardus |       49 |           4 |       ✅ |
+|             Bướm bụng sọc trắng |            Athyma_perius |       48 |           1 |       ✅ |
+|               Bướm xanh vệt bạc |          Iraota_timoleon |       48 |           1 |       ✅ |
+|           Bướm nâu gân cánh đen |          Appias_libythea |       47 |           2 |       ✅ |
+|       Bướm thượng sỹ nhiều răng |             Athyma_ranga |       47 |           1 |       ✅ |
+|                  Bướm chai xanh |        Graphium_sarpedon |       47 |           5 |       ✅ |
+|          Bướm bụi nâu dải trắng |        Mycalesis_anaxias |       47 |           4 |       ✅ |
+|                                 |             Appias_indra |       45 |           1 |       ✅ |
+|               Bướm nâu cánh bạc |          Euthalia_monina |       44 |           2 |       ✅ |
+|      Bướm bản đồ nhỏ nâu cam đỏ |         Chersonesia_risa |       43 |           1 |       ✅ |
+|           Bướm hề vạch gấp khúc |              Caleta_elna |       42 |           4 |       ✅ |
+|                      Bướm loang |          Delias_pasithoe |       42 |           5 |       ✅ |
+|           Bướm cánh phượng kiếm |      Graphium_antiphates |       42 |           5 |       ✅ |
+|   Bướm lính thủy sọc trắng ngắn |       Phaedyma_columella |       42 |           1 |       ✅ |
+|                   Bướm ngựa vằn |           Jamides_alecto |       41 |           1 |       ✅ |
+|                Bướm hề dải xanh |        Discolampa_ethion |       40 |           4 |       ✅ |
+|                    Bướm hiệp sỹ |           Lebadea_martha |       40 |           2 |       ✅ |
+|                Bướm cây nâu sọc |              Lethe_verma |       40 |           1 |       ✅ |
+|                   Bướm màu đồng |         Rapala_pheretima |       40 |           3 |       ✅ |
+|                  Bướm lông mượt |          Ariadne_ariadne |       39 |           1 |       ✅ |
+|                                 |        Eurema_andersonii |       39 |           1 |       ✅ |
+|                                 |           Appias_olferna |       38 |           1 |       ✅ |
+|         Bướm cánh hình lưỡi cưa |      Prioneris_thestylis |       38 |           5 |       ✅ |
+|                 Bướm báo hoa đỏ |          Cethosia_biblis |       37 |           4 |       ✅ |
+|            Bướm nhảy vạch trắng |     Notocrypta_paralysos |       37 |           1 |       ✅ |
+|      Bướm phượng bốn mảng trắng |         Papilio_nephelus |       37 |           5 |       ✅ |
+|                Bướm bụi nâu đen |         Mycalesis_mineus |       36 |           4 |       ✅ |
+|              Bướm nâu đuôi xanh |           Tanaecia_julii |       35 |           4 |       ✅ |
+|               Bướm cánh viền đỏ |          Delias_hyparete |       34 |           9 |       ✅ |
+|                                 |       Graphium_cloanthus |       34 |           1 |       ✅ |
+|            Bướm phượng xanh lớn |         Papilio_protenor |       34 |           4 |       ✅ |
+|         Bướm cối xay gió thường |         Byasa_polyeuctes |       33 |           5 |       ✅ |
+|                       Bướm trúc |      Discophora_sondaica |       33 |           1 |       ✅ |
+|       Bướm thiên đường rừng rậm |        Thaumantis_diores |       33 |           6 |       ✅ |
+| Bướm phượng cánh chim chấm liền |           Troides_helena |       33 |           5 |       ✅ |
+|                       Bướm đuôi |           Vagrans_egista |       33 |           8 |       ✅ |
+|           Bướm nữ hoàng  đốm đỏ |        Delias_descombesi |       32 |           5 |       ✅ |
+|                   Bướm gia đình |         Cirrochroa_tyche |       31 |           4 |       ✅ |
+|              Bướm cánh sọc chéo |            Lethe_confusa |       31 |           4 |       ✅ |
+|        Bướm nhảy cuối cánh vàng |     Mooreana_trichoneura |       29 |           6 |         |
+|      Bướm cánh bản đồ cẩm thạch |          Cyrestis_cocles |       27 |           4 |         |
+|            Bướm hổ gân cánh đen |        Danaus_melanippus |       27 |           3 |         |
+|                Bướm hổ cánh nâu |           Parantica_sita |       26 |           4 |         |
+|           Bướm bụi thông thường |        Mycalesis_perseus |       25 |           1 |         |
+|                  Bướm nhảy rừng |       Astictopterus_jama |       24 |           3 |         |
+|                 Bướm đuôi mamax |          Charaxes_marmax |       23 |           1 |         |
+|                Bướm sọc bạc đứt |          Spindasis_syama |       23 |           4 |         |
+|         Bướm thượng sỹ cam vàng |              Athyma_cama |       22 |           1 |         |
+|              Bướm thượng sỹ nhỏ |            Athyma_zeroca |       22 |           4 |         |
+|                                 |          Euploea_midamus |       22 |           1 |         |
+|                    Bướm quạ lớn |      Euploea_radamanthus |       22 |           2 |         |
+|    Bướm nam tước chóp đuôi xanh |         Euthalia_phemius |       21 |           1 |         |
+|                 Bướm nâu thường |            Faunis_canens |       21 |           1 |         |
+|         Bướm nữ hoàng cánh vàng |          Delias_agostina |       20 |           5 |         |
+|                                 |          Graphium_agetes |       20 |           1 |         |
+|  Bướm phượng cánh chim chấm rời |           Troides_aeacus |       20 |           7 |         |
+|      Bướm phượng đuôi kiếm xích |        Graphium_aristeus |       19 |           4 |         |
+|        Bướm nhảy chấm trắng nhỏ |             Hasora_vitta |       19 |           1 |         |
+|               Bướm chiều mắt đỏ |         Matapa_sasivarna |       19 |           1 |         |
+|                Bướm báo hoa nhỏ |         Phalanta_alcippe |       19 |           1 |         |
+|        Bướm xích trắng nhân đen |             Athyma_asura |       18 |           1 |         |
+|               Bướm ngựa vằn lớn |        Graphium_xenocles |       18 |           4 |         |
+|            Bướm phượng dải xanh |         Papilio_demolion |       18 |           4 |         |
+|         Bướm dải trắng chóp cam |             Athyma_nefte |       17 |           4 |         |
+|            Bướm chiều đốm tuyết |          Tagiades_menaka |       17 |           1 |         |
+|                    Bướm màu cam |       Yasoda_tripunctata |       17 |           4 |         |
+|            Bướm chúa hại cọ dầu |      Amathusia_phidippus |       16 |           4 |         |
+|      Bướm phượng xanh đuôi nheo |        Lamproptera_meges |       16 |           4 |         |
+|      Bướm giáp ngọc chót râu đỏ |          Lexias_pardalis |       16 |           4 |         |
+|                   Bướm tia nắng |            Curetis_bulis |       15 |           2 |         |
+|    Bướm quạ cánh trước xanh đậm |            Euploea_algea |       15 |           5 |         |
+|           Bướm nâu hai đốm vàng |            Faunis_eumeus |       15 |           4 |         |
+|        Bướm ngựa vằn trung bình |        Graphium_macareus |       15 |           1 |         |
+|             Bướm lính thủy vàng |              Neptis_miah |       15 |           1 |         |
+|        Bướm mắt rắn vằn bảy đốm |         Ragadia_crisilda |       15 |           3 |         |
+|        Bướm cỏ hoa thông thường |        Drupadia_ravindra |       14 |           1 |         |
+|                Bướm gốc cánh đỏ |      Prioneris_philonome |       13 |           3 |         |
+|              Bướm hề vạch thẳng |             Caleta_roxus |       12 |           4 |         |
+|                  Bướm ê ke xanh |       Graphium_eurypylus |       12 |           3 |         |
+|   Bướm phượng đuôi kiếm răng tù |   Teinopalpus_imperialis |       12 |           3 |         |
+|      Bướm kim cương huyền thoại |     Amathuxidia_amythaon |       11 |           4 |         |
+|                  Bướm cam di cư |        Catopsilia_scylla |       11 |           3 |         |
+|               Bướm đốm xanh nhỏ |        Euploea_tulliolus |       10 |           1 |         |
+|                                 |        Eurema_simulatrix |       10 |           1 |         |
+|          Bướm viền nâu hai đuôi |   Hypolycaena_thecloides |       10 |           1 |         |
+|               Bướm ngựa vằn nhỏ |         Graphium_megarus |        9 |           4 |         |
+|            Bướm mắt rắn đa hình |           Neope_armandii |        9 |           4 |         |
+|         Bướm phượng hê len xanh |        Papilio_prexaspes |        9 |           1 |         |
+|                    Bướm tím nhỏ |        Terinos_terpander |        9 |           1 |         |
+|               Bướm nữ thần vàng |         Aemona_amathusia |        8 |           1 |         |
+|          Bướm vàng băng cam nhỏ |       Pantoporia_sandaka |        8 |           1 |         |
+|                  Bướm chúa rừng |           Thauria_aliris |        8 |           4 |         |
+|           Bướm hổ gốc cánh vàng |        Parantica_aspasia |        7 |           1 |         |
+|          Bướm lá khô vạch trắng |     Kallima_albofasciata |        6 |           1 |         |
+|          Bướm mắt rắn cánh xanh |          Coelites_nothis |        5 |           4 |         |
+|                    Bướm lá xanh |         Amblipodia_anita |        4 |           4 |         |
+|                 Bướm hải âu cam |              Appias_nero |        4 |           4 |         |
+|         Bướm thầu dầu lông mượt |       Argyreus_hyperbius |        4 |           4 |         |
+|                        Bướm khế |            Attacus_atlas |        4 |           4 |         |
+|             Bướm mòng cánh vàng |            Cepora_iudith |        4 |           4 |         |
+|           Bướm nam tước chấm đỏ |         Euthalia_evelina |        4 |           4 |         |
+|           Bướm nam tước đuôi đỏ |           Euthalia_recta |        4 |           4 |         |
+|         Bướm phù thuỷ rừng xanh |             Hestina_nama |        4 |           4 |         |
+|                Bướm cỏ đốm xanh |         Ideopsis_similis |        4 |           4 |         |
+|                     Bướm lá khô |           Kallima_alicia |        4 |           4 |         |
+|        Bướm mắt rắn rừng thường |             Lethe_insana |        4 |           4 |         |
+|                    Bướm năm mắt |             Lethe_syrcis |        4 |           4 |         |
+|         Bướm hoàng đế trằng sữa |          Neomyrina_nivea |        4 |           4 |         |
+|              Bướm quạ miến điện |         Papilio_mahadeva |        4 |           4 |         |
+|         Bướm hề đỏ thông thường |       Paralaxita_telesia |        4 |           4 |         |
+|         Bướm giáp nâu xanh nhạt |             Polyura_arja |        4 |           4 |         |
+|               Bướm đen đốm vàng |          Polyura_athamas |        4 |           4 |         |
+|             Bướm giáp cánh ngọc |          Polyura_delphis |        4 |           4 |         |
+|               Bướm nữ chúa rừng |    Stichophthalma_howqua |        4 |           4 |         |
+|        Bướm chúa rừng nhiệt đới |   Stichophthalma_uemurai |        4 |           4 |         |
+|   Bướm mạo danh vạch ngang xanh |          Chilasa_slateri |        3 |           3 |         |
+|         Bướm đen hai chấm trắng |      Lexias_albopunctata |        3 |           3 |         |
+|               Bướm hổ bụng vàng |       Parantica_swinhoei |        3 |           3 |         |
+|          Bướm nâu sọc cánh vàng |              Yoma_sabina |        3 |           3 |         |
+|                                 |         Artogeia_canidia |        2 |           2 |         |
+|                  Bướm cánh rộng |        Hypolimnas_bolima |        2 |           2 |         |
+|                 Bướm cỏ nâu đen |    Nothodanis_schaeffera |        2 |           2 |         |
+|     Bướm đuôi dài xanh lá chuối |            Argema_maenas |        1 |           1 |         |
+|     Bướm phượng dài đuôi thường |        Atrophaneura_coon |        1 |           1 |         |
+|          Bướm tím than hai đuôi |          Chliaria_othona |        1 |           1 |         |
+|              Bướm bản đồ thường |        Cyrestis_themires |        1 |           1 |         |
+|               Bướm nhảy màu nâu |          Lambrix_salsala |        1 |           1 |         |
+|             Bướm cánh sọc trắng |             Neptis_clina |        1 |           1 |         |
+|                    Bướm hại mai |         Neptis_columella |        1 |           1 |         |
+|            Bướm phượng đuôi kem |           Papilio_noblei |        1 |           1 |         |
+|         Bướm đuôi kiếm bốn vạch |           Pathysa_agetes |        1 |           1 |         |
+|        Bướm nhảy nâu chấm trắng |          Sovia_albipecta |        1 |           1 |         |
+| Bướm phượng đuôi kiếm răng nhọn |       Teinopalpus_aureus |        1 |           1 |         |
+|                    Bướm tím lớn |         Terinos_clarissa |        1 |           1 |         |
