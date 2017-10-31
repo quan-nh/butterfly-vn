@@ -44,6 +44,7 @@
                      {:text "Oops! Try sending another image."})))
 
 (defn handle-event [{:keys [body]}]
+  (clojure.pprint/pprint body)
   (if (= "page" (:object body))
     (do
       (doseq [entry (:entry body)]
