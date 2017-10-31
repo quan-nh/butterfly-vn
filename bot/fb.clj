@@ -78,7 +78,7 @@
                                           :headers {"Content-Type" "application/json"}
                                           :body (json/encode {:greeting
                                                               [{:locale "default"
-                                                                :text "Hãy cho chúng tôi thấy Bướm của bạn,\nChúng tôi sẽ cho bạn biết Bướm bạn thuộc Loài nào!"}]})})]
+                                                                :text "Hãy cho chúng tôi thấy Bướm của bạn\nChúng tôi sẽ cho bạn biết Bướm bạn thuộc Loài nào!"}]})})]
     (if error
       (println "Failed, exception is " error)
       (println body))))

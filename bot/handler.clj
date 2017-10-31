@@ -13,7 +13,7 @@
     challenge
     {:status 403}))
 
-(defn- response-result [image-url]
+(defn- predict-image [sender-psid image-url]
   (let [[status body] (dl/memo-label-image image-url)]
     (case status
       200
@@ -39,10 +39,10 @@
 
       (some-> nlp :entities :test first :confidence (> 0.8))
       (let [user-profile (fb/memo-user-profile sender-psid)]
-        (response-result (:profile_pic user-profile)))
+        (predict-image sender-psid (:profile_pic user-profile)))
 
       image-url
-      (response-result image-url)
+      (predict-image sender-psid image-url)
 
       :else
       (fb/send-message sender-psid
