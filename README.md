@@ -1,6 +1,6 @@
 # butterfly-vn
 
-a [Messenger bot](http://m.me/vi.butterfly/) try to predict butterflies of Vietnam, at **Species** level (for _Classification of Living Things_, ref [this](https://github.com/tentamen/butterfly-vn/blob/master/knowledge/dinh_nghia.md), in Vietnamese).
+a [Messenger bot](http://m.me/vi.butterfly/) try to predict Butterfly [Species](https://github.com/tentamen/butterfly-vn/blob/master/knowledge/dinh_nghia.md) from photo user submitted.
 
 - Deep Learning retrain via pre-trained Inception v3 model.
 - Data stats: [r.txt](r.txt)
