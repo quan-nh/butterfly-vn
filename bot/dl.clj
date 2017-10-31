@@ -17,14 +17,15 @@
   (let [{:keys [label score]} (first (json/decode body true))
         [genus species] (str/split label #" ")
         latin-name (str genus " " (str/lower-case species))
-        {:keys [vn_name url]} (or (first (jdbc/query db-spec
-                                                     ["SELECT vn_name, url
-                                                       FROM butterfly
-                                                       WHERE genus = ? AND species = ?"
-                                                      genus (str/lower-case species)]))
-                                  {:vn_name latin-name
-                                   :url "http://www.vncreatures.net/hinhanh.php?nhom=1&loai=3"})]
-    [vn_name (str latin-name " - " score) url]))
+        {:keys [vn_name common_name url]} (or (first (jdbc/query
+                                                      db-spec
+                                                      ["SELECT vn_name, common_name, url
+                                                        FROM butterfly
+                                                        WHERE genus = ? AND species = ?"
+                                                       genus (str/lower-case species)]))
+                                              {:vn_name latin-name
+                                               :url "http://www.vncreatures.net/hinhanh.php?nhom=1&loai=3"})]
+    [(or vn_name common_name) (str latin-name " - " score) url]))
 
 (defn- label-image [image-url]
   (let [{:keys [status body]} @(http/get dl-server

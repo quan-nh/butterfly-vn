@@ -37,17 +37,15 @@
              (rest (file-seq dir)))))))
 
 (defn cleanup []
-  (let [vn-butterflies (->> (jdbc/query db/db-spec
-                                        ["SELECT (genus || \"-\" || species) AS name
-                                          FROM butterfly
-                                          WHERE vn_name IS NOT NULL;"])
-                            (map :name)
-                            set)]
-    (doseq [dir (->> (file-seq (io/file "../data-train"))
-                     rest
-                     (filter #(.isDirectory %)))]
-      (when (or (< (count (.list dir)) 30)
-                (not-any? vn-butterflies [(.getName dir)]))
+  (doseq [dir (->> (file-seq (io/file "../data-train"))
+                   rest
+                   (filter #(.isDirectory %)))]
+    (let [no-imgs (count (.list dir))
+          no-vn-imgs (->> (.list dir)
+                          (filter #(str/starts-with? % "vn"))
+                          count)]
+      (when (or (< no-imgs 30)
+                (zero? no-vn-imgs))
         (println "remove" (.getName dir))
         (doseq [f (reverse (file-seq dir))]
           (io/delete-file f))))))

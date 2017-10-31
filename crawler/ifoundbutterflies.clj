@@ -75,7 +75,8 @@
                                            :tribe tribe
                                            :genus genus
                                            :species species
-                                           :common_name common-name})))
+                                           :common_name common-name
+                                           :url link})))
   (jdbc/update! db/db-spec :butterfly
                 {:genus "Chilasa"}
                 ["genus = ? AND species = ?" "Papilio" "clytia"])

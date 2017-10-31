@@ -68,4 +68,5 @@
                                              :subfamily (str/capitalize subfamily)
                                              :genus (str/capitalize genus)
                                              :species species
-                                             :common_name (capitalize-words common-name)})))))
+                                             :common_name (capitalize-words common-name)
+                                             :url link})))))
