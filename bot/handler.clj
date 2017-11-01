@@ -1,7 +1,7 @@
 (ns handler
   (:require [clojure.string :as str]
             [clojure.pprint :refer [pprint]]
-            [dl] [fb]))
+            [dl] [fb] [kieu] [nlp]))
 
 (def verify-token (System/getenv "VERIFY_TOKEN"))
 
@@ -46,7 +46,8 @@
 
       :else
       (fb/send-message sender-psid
-                       {:text "Send me your butterfly photo and we will help you classify it at Species level."}))))
+                       {:text (rand-nth (for [word (nlp/words text)]
+                                          (kieu/query word)))}))))
 
 (defn- handle-postback [sender-psid {:keys [payload]}]
   (case payload
