@@ -2,23 +2,27 @@
 |                        :vn-name |                    :name | :no-imgs | :no-vn-imgs | :train? |
 |---------------------------------+--------------------------+----------+-------------+---------|
 |            Bướm mắt rắn bay đêm |           Melanitis_leda |      220 |           3 |       ✅ |
-|                    Bướm lãng tử |        Castalius_rosimon |      186 |           4 |       ✅ |
+|                    Bướm lãng tử |        Castalius_rosimon |      187 |           5 |       ✅ |
 |               Bướm cam đuôi dài |          Papilio_polytes |      175 |           6 |       ✅ |
 |                Bướm chanh di cư |        Catopsilia_pomona |      173 |           5 |       ✅ |
 |                 Bướm phượng cam |         Papilio_demoleus |      169 |           5 |       ✅ |
 |                     Bướm hổ cam |        Danaus_chrysippus |      167 |           4 |       ✅ |
 |               Bướm mạo danh nhỏ |      Hypolimnas_misippus |      153 |           2 |       ✅ |
-|                    Bướm hại tuế |         Chilades_pandava |      149 |           1 |       ✅ |
+|                    Bướm hại tuế |         Chilades_pandava |      151 |           3 |       ✅ |
 |              Bướm hoa đuôi công |           Junonia_almana |      149 |           4 |       ✅ |
-|    Bướm xanh tím dải trắng rộng |        Lampides_boeticus |      147 |           1 |       ✅ |
+|    Bướm xanh tím dải trắng rộng |        Lampides_boeticus |      148 |           2 |       ✅ |
+|                                 |         Leptotes_plinius |      148 |           1 |       ✅ |
+|                                 |           Jamides_celeno |      147 |           1 |       ✅ |
 |                    Bướm hoa nâu |         Junonia_lemonias |      144 |           4 |       ✅ |
+|                                 |        Euchrysops_cnejus |      141 |           1 |       ✅ |
 |               Bướm nhãn lồng đỏ |            Acraea_violae |      139 |           4 |       ✅ |
 |                  Bướm lính thủy |             Neptis_hylas |      139 |           4 |       ✅ |
 |                                 |           Cepora_nerissa |      137 |           1 |       ✅ |
+|                   Bướm xanh lục |      Pseudozizeeria_maha |      137 |           3 |       ✅ |
 |       Bướm xanh nhỏ chấm thường |              Zizina_otis |      137 |           1 |       ✅ |
 |          Bướm quạ chót cánh bạc |             Euploea_core |      135 |           5 |       ✅ |
 |                 Bướm lang thang |         Pareronia_hippia |      135 |           5 |       ✅ |
-|                   Bướm xanh lục |      Pseudozizeeria_maha |      135 |           1 |       ✅ |
+|                                 |         Acytolepis_puspa |      133 |           1 |       ✅ |
 |       Bướm sọc bạc thông thường |       Spindasis_vulcanus |      131 |           1 |       ✅ |
 |                Bướm nhỏ bốn mắt |         Ypthima_huebneri |      129 |           1 |       ✅ |
 |                 Bướm màu cà rốt |           Loxura_atymnus |      127 |           4 |       ✅ |
@@ -45,6 +49,7 @@
 |            Bướm xám nhỏ có đuôi |           Megisba_malaya |       89 |           1 |       ✅ |
 |                   Bướm ngô xanh |             Zeltus_amasa |       89 |           4 |       ✅ |
 |                   Bướm đốm xanh |   Tirumala_septentrionis |       87 |           5 |       ✅ |
+|                                 |           Jamides_bochus |       86 |           1 |       ✅ |
 |                    Bướm nâu lớn |           Appias_lyncida |       83 |           5 |       ✅ |
 |                                 |             Eurema_laeta |       83 |           1 |       ✅ |
 |         Bướm xám nhỏ không đuôi |     Neopithecops_zalmora |       82 |           2 |       ✅ |
@@ -64,17 +69,19 @@
 |           Bướm cánh vàng ba vệt |            Eurema_blanda |       72 |           2 |       ✅ |
 |                 Bướm phượng lớn |           Papilio_memnon |       71 |           7 |       ✅ |
 |           Bướm phượng thân hồng | Pachliopta_aristolochiae |       70 |           4 |       ✅ |
+|                    Bướm nâu nhỏ |          Zemeros_flegyas |       70 |           2 |       ✅ |
 |               Bướm tím hai đuôi |       Hypolycaena_erylus |       69 |           2 |       ✅ |
-|                    Bướm nâu nhỏ |          Zemeros_flegyas |       69 |           1 |       ✅ |
 |          Bướm nam tước lòe loẹt |       Euthalia_lubentina |       67 |           4 |       ✅ |
+|                  Bướm lông xanh |           Anthene_emolus |       66 |           2 |       ✅ |
 |                  Bướm trắng lớn |       Hebomoia_glaucippe |       66 |           4 |       ✅ |
-|                  Bướm lông xanh |           Anthene_emolus |       65 |           1 |       ✅ |
 |                Bướm hổ đuôi nhỏ |       Symbrenthia_lilaea |       63 |           2 |       ✅ |
 |                 Bướm cánh tuyết |       Tagiades_litigiosa |       63 |           1 |       ✅ |
 |                        Bướm cau |    Elymnias_hypermnestra |       62 |           4 |       ✅ |
+|             Bướm cánh đốm loang |            Tagiades_gana |       62 |           3 |       ✅ |
 |              Bướm phượng hê len |          Papilio_helenus |       61 |           5 |       ✅ |
 |                   Bướm kim vàng |           Acraea_issoria |       60 |           4 |       ✅ |
-|             Bướm cánh đốm loang |            Tagiades_gana |       60 |           1 |       ✅ |
+|                                 |   Notocrypta_curvifascia |       60 |           1 |       ✅ |
+|                                 |       Arhopala_centaurus |       58 |           1 |       ✅ |
 |                    Bướm lá vàng |   Doleschallia_bisaltide |       58 |           3 |       ✅ |
 |                Bướm tre nâu đốm |             Lethe_europa |       58 |           4 |       ✅ |
 |                Bướm mũ quan tòa |          Libythea_myrrha |       58 |           1 |       ✅ |
@@ -99,11 +106,12 @@
 |                                 |             Appias_indra |       45 |           1 |       ✅ |
 |               Bướm nâu cánh bạc |          Euthalia_monina |       44 |           2 |       ✅ |
 |      Bướm bản đồ nhỏ nâu cam đỏ |         Chersonesia_risa |       43 |           1 |       ✅ |
+|                                 |            Abisara_fylla |       42 |           1 |       ✅ |
 |           Bướm hề vạch gấp khúc |              Caleta_elna |       42 |           4 |       ✅ |
 |                      Bướm loang |          Delias_pasithoe |       42 |           5 |       ✅ |
 |           Bướm cánh phượng kiếm |      Graphium_antiphates |       42 |           5 |       ✅ |
+|                   Bướm ngựa vằn |           Jamides_alecto |       42 |           2 |       ✅ |
 |   Bướm lính thủy sọc trắng ngắn |       Phaedyma_columella |       42 |           1 |       ✅ |
-|                   Bướm ngựa vằn |           Jamides_alecto |       41 |           1 |       ✅ |
 |                Bướm hề dải xanh |        Discolampa_ethion |       40 |           4 |       ✅ |
 |                    Bướm hiệp sỹ |           Lebadea_martha |       40 |           2 |       ✅ |
 |                Bướm cây nâu sọc |              Lethe_verma |       40 |           1 |       ✅ |
@@ -116,6 +124,7 @@
 |            Bướm nhảy vạch trắng |     Notocrypta_paralysos |       37 |           1 |       ✅ |
 |      Bướm phượng bốn mảng trắng |         Papilio_nephelus |       37 |           5 |       ✅ |
 |                Bướm bụi nâu đen |         Mycalesis_mineus |       36 |           4 |       ✅ |
+|                                 |        Poritia_hewitsoni |       35 |           1 |       ✅ |
 |              Bướm nâu đuôi xanh |           Tanaecia_julii |       35 |           4 |       ✅ |
 |               Bướm cánh viền đỏ |          Delias_hyparete |       34 |           9 |       ✅ |
 |                                 |       Graphium_cloanthus |       34 |           1 |       ✅ |
@@ -129,6 +138,8 @@
 |                   Bướm gia đình |         Cirrochroa_tyche |       31 |           4 |       ✅ |
 |              Bướm cánh sọc chéo |            Lethe_confusa |       31 |           4 |       ✅ |
 |        Bướm nhảy cuối cánh vàng |     Mooreana_trichoneura |       29 |           6 |         |
+|                                 |            Psolos_fuligo |       28 |           1 |         |
+|                                 |    Catochrysops_panormus |       27 |           1 |         |
 |      Bướm cánh bản đồ cẩm thạch |          Cyrestis_cocles |       27 |           4 |         |
 |            Bướm hổ gân cánh đen |        Danaus_melanippus |       27 |           3 |         |
 |                Bướm hổ cánh nâu |           Parantica_sita |       26 |           4 |         |
@@ -140,15 +151,18 @@
 |              Bướm thượng sỹ nhỏ |            Athyma_zeroca |       22 |           4 |         |
 |                                 |          Euploea_midamus |       22 |           1 |         |
 |                    Bướm quạ lớn |      Euploea_radamanthus |       22 |           2 |         |
+|                                 |           Nacaduba_beroe |       22 |           1 |         |
 |    Bướm nam tước chóp đuôi xanh |         Euthalia_phemius |       21 |           1 |         |
 |                 Bướm nâu thường |            Faunis_canens |       21 |           1 |         |
 |         Bướm nữ hoàng cánh vàng |          Delias_agostina |       20 |           5 |         |
 |                                 |          Graphium_agetes |       20 |           1 |         |
+|                                 |  Notocrypta_feisthamelii |       20 |           1 |         |
 |  Bướm phượng cánh chim chấm rời |           Troides_aeacus |       20 |           7 |         |
 |      Bướm phượng đuôi kiếm xích |        Graphium_aristeus |       19 |           4 |         |
 |        Bướm nhảy chấm trắng nhỏ |             Hasora_vitta |       19 |           1 |         |
 |               Bướm chiều mắt đỏ |         Matapa_sasivarna |       19 |           1 |         |
 |                Bướm báo hoa nhỏ |         Phalanta_alcippe |       19 |           1 |         |
+|                                 |         Abisara_neophron |       18 |           1 |         |
 |        Bướm xích trắng nhân đen |             Athyma_asura |       18 |           1 |         |
 |               Bướm ngựa vằn lớn |        Graphium_xenocles |       18 |           4 |         |
 |            Bướm phượng dải xanh |         Papilio_demolion |       18 |           4 |         |
@@ -165,8 +179,8 @@
 |             Bướm lính thủy vàng |              Neptis_miah |       15 |           1 |         |
 |        Bướm mắt rắn vằn bảy đốm |         Ragadia_crisilda |       15 |           3 |         |
 |        Bướm cỏ hoa thông thường |        Drupadia_ravindra |       14 |           1 |         |
+|              Bướm hề vạch thẳng |             Caleta_roxus |       13 |           5 |         |
 |                Bướm gốc cánh đỏ |      Prioneris_philonome |       13 |           3 |         |
-|              Bướm hề vạch thẳng |             Caleta_roxus |       12 |           4 |         |
 |                  Bướm ê ke xanh |       Graphium_eurypylus |       12 |           3 |         |
 |   Bướm phượng đuôi kiếm răng tù |   Teinopalpus_imperialis |       12 |           3 |         |
 |      Bướm kim cương huyền thoại |     Amathuxidia_amythaon |       11 |           4 |         |
@@ -180,9 +194,11 @@
 |                    Bướm tím nhỏ |        Terinos_terpander |        9 |           1 |         |
 |               Bướm nữ thần vàng |         Aemona_amathusia |        8 |           1 |         |
 |          Bướm vàng băng cam nhỏ |       Pantoporia_sandaka |        8 |           1 |         |
+|                                 |          Prosotas_bhutea |        8 |           1 |         |
 |                  Bướm chúa rừng |           Thauria_aliris |        8 |           4 |         |
 |           Bướm hổ gốc cánh vàng |        Parantica_aspasia |        7 |           1 |         |
 |          Bướm lá khô vạch trắng |     Kallima_albofasciata |        6 |           1 |         |
+|                                 |          Potanthus_ganda |        6 |           1 |         |
 |          Bướm mắt rắn cánh xanh |          Coelites_nothis |        5 |           4 |         |
 |                    Bướm lá xanh |         Amblipodia_anita |        4 |           4 |         |
 |                 Bướm hải âu cam |              Appias_nero |        4 |           4 |         |
@@ -196,6 +212,7 @@
 |                     Bướm lá khô |           Kallima_alicia |        4 |           4 |         |
 |        Bướm mắt rắn rừng thường |             Lethe_insana |        4 |           4 |         |
 |                    Bướm năm mắt |             Lethe_syrcis |        4 |           4 |         |
+|                                 |      Monodontides_musina |        4 |           1 |         |
 |         Bướm hoàng đế trằng sữa |          Neomyrina_nivea |        4 |           4 |         |
 |              Bướm quạ miến điện |         Papilio_mahadeva |        4 |           4 |         |
 |         Bướm hề đỏ thông thường |       Paralaxita_telesia |        4 |           4 |         |
@@ -204,8 +221,10 @@
 |             Bướm giáp cánh ngọc |          Polyura_delphis |        4 |           4 |         |
 |               Bướm nữ chúa rừng |    Stichophthalma_howqua |        4 |           4 |         |
 |        Bướm chúa rừng nhiệt đới |   Stichophthalma_uemurai |        4 |           4 |         |
+|                                 |           Abisara_burnii |        3 |           1 |         |
 |   Bướm mạo danh vạch ngang xanh |          Chilasa_slateri |        3 |           3 |         |
 |         Bướm đen hai chấm trắng |      Lexias_albopunctata |        3 |           3 |         |
+|                                 |     Neocheritra_fabronia |        3 |           2 |         |
 |               Bướm hổ bụng vàng |       Parantica_swinhoei |        3 |           3 |         |
 |          Bướm nâu sọc cánh vàng |              Yoma_sabina |        3 |           3 |         |
 |                                 |         Artogeia_canidia |        2 |           2 |         |
