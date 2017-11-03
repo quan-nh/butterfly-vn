@@ -1,7 +1,7 @@
 (ns handler
   (:require [clojure.string :as str]
             [clojure.pprint :refer [pprint]]
-            [btc] [dl] [fb] [kieu] [nlp]))
+            [btc] [dl] [fb] [kieu] [nlp] [thica]))
 
 (def verify-token (System/getenv "VERIFY_TOKEN"))
 
@@ -44,6 +44,10 @@
       (some-> nlp :entities :bitcoin first :confidence (> 0.8))
       (fb/send-message sender-psid
                        {:text (btc/memo-coindesk)})
+
+      (some-> nlp :entities :thica first :confidence (> 0.8))
+      (fb/send-message sender-psid
+                       {:text (thica/memo-tai-hoa)})
 
       image-url
       (predict-image sender-psid image-url)
