@@ -6,6 +6,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from tensorflow.python.framework.errors_impl import InvalidArgumentError
 from label_image import label_image
 import json
+from urllib.parse import unquote
 from urllib.error import HTTPError
 
 app = Flask(__name__)
@@ -34,7 +35,7 @@ def chatbot_response(query):
 
 @app.route("/label_image")
 def label_image_resp():
-  image_url = request.args.get('image_url', '')
+  image_url = unquote(request.args.get('image_url', ''))
   no_predict = request.args.get('no_predict', '2')
   
   try:
