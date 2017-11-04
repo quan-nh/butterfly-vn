@@ -1,2 +1,4 @@
 /output_graph.pb
 /__pycache__/
+*.db
+/data/
