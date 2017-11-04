@@ -13,6 +13,14 @@
 
 (defn- url-encode [url] (some-> url (java.net.URLEncoder/encode "UTF-8") (.replace "+" "%20")))
 
+(defn- chatbot [text]
+  (let [{:keys [error body]} @(http/get (str dl-server "/chatbot/" (url-encode text)))]
+    (when-not error
+      body)))
+
+(def memo-chatbot
+  (memo/lu chatbot :lu/threshold 100))
+
 (defn- parse-result [body]
   (let [{:keys [label score]} (first (json/decode body true))
         [genus species] (str/split label #" ")
@@ -28,7 +36,7 @@
     [(or vn_name common_name) (str latin-name " - " score) url]))
 
 (defn- label-image [image-url]
-  (let [{:keys [status body]} @(http/get dl-server
+  (let [{:keys [status body]} @(http/get (str dl-server "/label_image")
                                          {:query-params {:image_url (url-encode image-url)
                                                          :no_predict 1}})]
     (if (= 200 status)

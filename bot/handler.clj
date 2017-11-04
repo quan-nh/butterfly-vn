@@ -1,7 +1,7 @@
 (ns handler
   (:require [clojure.string :as str]
             [clojure.pprint :refer [pprint]]
-            [btc] [dl] [fb] [kieu] [nlp] [thica]))
+            [btc] [dl] [fb] [thica]))
 
 (def verify-token (System/getenv "VERIFY_TOKEN"))
 
@@ -33,10 +33,6 @@
   (let [image-url (or (fb/attachment-url (first attachments))
                       (some->> text (re-find #"https?://\S+")))]
     (cond
-      (some-> nlp :entities :greeting first :confidence (> 0.8))
-      (fb/send-message sender-psid
-                       {:text "Xin chào!"})
-
       (some-> nlp :entities :test first :confidence (> 0.8))
       (let [user-profile (fb/memo-user-profile sender-psid)]
         (predict-image sender-psid (:profile_pic user-profile)))
@@ -54,8 +50,7 @@
 
       :else
       (fb/send-message sender-psid
-                       {:text (rand-nth (for [word (nlp/words text)]
-                                          (kieu/query word)))}))))
+                       {:text (dl/memo-chatbot text)}))))
 
 (defn- handle-postback [sender-psid {:keys [payload]}]
   (case payload
