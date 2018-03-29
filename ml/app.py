@@ -24,7 +24,7 @@ chatbot = ChatBot(
 
 chatbot.set_trainer(ChatterBotCorpusTrainer)
 chatbot.train(
-    "./data/tg"
+    "./data"
 )
 
 

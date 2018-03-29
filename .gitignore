@@ -1,5 +1,4 @@
 *.cpcache/
-/c*
 /data*
 /target/
 *.lein-repl-history
