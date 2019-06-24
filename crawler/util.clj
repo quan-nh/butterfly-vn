@@ -3,6 +3,7 @@
             [clojure.string :as str]
             [clojure.pprint :refer [print-table]]
             [clojure.java.jdbc :as jdbc]
+            [clj-http.client :as http]
             [db]
             [image-resizer.core :refer [crop-from dimensions]]
             [image-resizer.format :as format])
@@ -12,18 +13,18 @@
 (defn- ext [url])
 
 (defn save-image [url file]
-  (with-open [in (io/input-stream (str/replace url #" " "%20"))
-              out (io/output-stream file)]
-    (io/copy in out)))
+  (with-open [out (io/output-stream file)]
+    (io/copy (:body (http/get (str/replace url #" " "%20") {:as :stream}))
+             out)))
 
 (defn- crop-image [^File image dest-dir x y]
   (let [buffered-image (ImageIO/read image)
         file-name (.getName image)
         [width height] (dimensions buffered-image)]
     (format/as-file
-     (crop-from image x y (- width (* 2 x)) (- height (* 2 y)))
-     (str dest-dir "/" file-name)
-     :verbatim)))
+      (crop-from image x y (- width (* 2 x)) (- height (* 2 y)))
+      (str dest-dir "/" file-name)
+      :verbatim)))
 
 (defn crop-images [source dest x y]
   (doseq [dir (->> (file-seq (io/file source))
@@ -33,8 +34,8 @@
       (println "crop image, save to dir" dest-dir)
       (.mkdir (io/file dest-dir))
       (doall
-       (pmap #(crop-image % dest-dir x y)
-             (rest (file-seq dir)))))))
+        (pmap #(crop-image % dest-dir x y)
+              (rest (file-seq dir)))))))
 
 (defn cleanup []
   (doseq [dir (->> (file-seq (io/file "../data-train"))
@@ -52,27 +53,27 @@
 ; rm -rf data-train
 ; cp -r data data-train
 ; rename 's/-/_/g' *
-(cleanup)
+; (cleanup)
 
 #_(let [vn-data (->> (jdbc/query db/db-spec
-                               ["SELECT vn_name, genus, species
+                                 ["SELECT vn_name, genus, species
                                 FROM butterfly
                                 WHERE vn_name IS NOT NULL;"])
-                   (reduce (fn [m {:keys [vn_name genus species]}]
-                             (assoc m (str genus "_" species) vn_name))
-                           {}))
-      dir  (->> (file-seq (io/file "../data"))
-                rest
-                (filter #(.isDirectory %))
-                (map (fn [dir]
-                       {:name (-> (.getName dir) (str/split #"/") last)
-                        :no-imgs (count (.list dir))
-                        :no-vn-imgs (->> (.list dir)
-                                         (filter #(str/starts-with? % "vn"))
-                                         count)})))]
-  (print-table [:vn-name :name :no-imgs :no-vn-imgs :train?]
-               (some->> dir
-                        (filter #(pos? (:no-vn-imgs %)))
-                        (map #(assoc % :vn-name (get vn-data (:name %))))
-                        (map #(assoc % :train? (when (>= (:no-imgs %) 30) "✅")))
-                        (sort-by :no-imgs >))))
+                     (reduce (fn [m {:keys [vn_name genus species]}]
+                               (assoc m (str genus "_" species) vn_name))
+                             {}))
+        dir (->> (file-seq (io/file "../data"))
+                 rest
+                 (filter #(.isDirectory %))
+                 (map (fn [dir]
+                        {:name       (-> (.getName dir) (str/split #"/") last)
+                         :no-imgs    (count (.list dir))
+                         :no-vn-imgs (->> (.list dir)
+                                          (filter #(str/starts-with? % "vn"))
+                                          count)})))]
+    (print-table [:vn-name :name :no-imgs :no-vn-imgs :train?]
+                 (some->> dir
+                          (filter #(pos? (:no-vn-imgs %)))
+                          (map #(assoc % :vn-name (get vn-data (:name %))))
+                          (map #(assoc % :train? (when (>= (:no-imgs %) 30) "✅")))
+                          (sort-by :no-imgs >))))

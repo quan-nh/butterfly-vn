@@ -8,6 +8,9 @@
   (:import (java.net URL)))
 
 (def base-url "http://www.vncreatures.net")
+(def img-dir "./img")
+(def csv-file "./all_data.csv")
+(def bucket "gs://butterfly-244505-vcm/img/butterfly")
 
 (defn butterflies [page]
   (let [dom (-> (str base-url "/kqtracuu.php?type=nhom&loai=3&page=" page)
@@ -26,28 +29,33 @@
 
 (defn save-data []
   (doseq [[id _ genus species] (mapcat butterflies (range 1 7))]
-    (let [dir (str "../data-vncreatures/" genus "_" species)]
+    (let [label (str genus "_" species)
+          dir (str img-dir "/" label)]
       (println dir)
       (.mkdir (io/file dir))
       (try
         (save-image
-         (str base-url "/pictures/insect/" id "s.jpg")
-         (str dir "/vncreatures_" id "s.jpg"))
+          (str base-url "/pictures/insect/" id "s.jpg")
+          (str dir "/vncreatures_" id "s.jpg"))
+        (spit csv-file (str bucket "/" label "/vncreatures_" id "s.jpg," label "\n") :append true)
         (catch Exception _))
       (try
         (save-image
-         (str base-url "/pictures/insect/" id "_1s.jpg")
-         (str dir "/vncreatures_" id "_1s.jpg"))
+          (str base-url "/pictures/insect/" id "_1s.jpg")
+          (str dir "/vncreatures_" id "_1s.jpg"))
+        (spit csv-file (str bucket "/" label "/vncreatures_" id "_1s.jpg," label "\n") :append true)
         (catch Exception _))
       (try
         (save-image
-         (str base-url "/pictures/insect/" id "_2s.jpg")
-         (str dir "/vncreatures_" id "_2s.jpg"))
+          (str base-url "/pictures/insect/" id "_2s.jpg")
+          (str dir "/vncreatures_" id "_2s.jpg"))
+        (spit csv-file (str bucket "/" label "/vncreatures_" id "_2s.jpg," label "\n") :append true)
         (catch Exception _))
       (try
         (save-image
-         (str base-url "/pictures/insect/" id "_3s.jpg")
-         (str dir "/vncreatures_" id "_3s.jpg"))
+          (str base-url "/pictures/insect/" id "_3s.jpg")
+          (str dir "/vncreatures_" id "_3s.jpg"))
+        (spit csv-file (str bucket "/" label "/vncreatures_" id "_3s.jpg," label "\n") :append true)
         (catch Exception _)))))
 
 (defn insert-db []
@@ -56,9 +64,9 @@
     (if (seq (jdbc/query db/db-spec ["SELECT * FROM butterfly WHERE genus = ? AND species = ?" genus species]))
       (jdbc/update! db/db-spec :butterfly
                     {:vn_name vn-name
-                     :url (str base-url "/chitiet.php?loai=3&ID=" id)}
+                     :url     (str base-url "/chitiet.php?loai=3&ID=" id)}
                     ["genus = ? AND species = ?" genus species])
-      (jdbc/insert! db/db-spec :butterfly {:genus genus
+      (jdbc/insert! db/db-spec :butterfly {:genus   genus
                                            :species species
                                            :vn_name vn-name
-                                           :url (str base-url "/chitiet.php?loai=3&ID=" id)}))))
+                                           :url     (str base-url "/chitiet.php?loai=3&ID=" id)}))))

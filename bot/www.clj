@@ -1,4 +1,4 @@
-(ns main
+(ns www
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [handler]
@@ -7,9 +7,9 @@
             [org.httpkit.server :refer [run-server]]))
 
 (defroutes app-routes
-  (GET "/webhook" [] handler/verification)
-  (POST "/webhook" [] handler/handle-event)
-  (route/not-found "Not Found"))
+           (GET "/webhook" [] handler/verification)
+           (POST "/webhook" [] handler/handle-event)
+           (route/not-found "Not Found"))
 
 (def app (-> app-routes
              (wrap-json-body {:keywords? true})

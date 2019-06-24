@@ -1,7 +1,9 @@
 *.cpcache/
-/data*
 /target/
 *.lein-repl-history
 *.nrepl-port
 *.log
-/repo/
+*.iml
+*.idea/
+/crawler/img*
+/crawler/all_data.csv

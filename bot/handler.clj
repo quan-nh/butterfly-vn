@@ -1,12 +1,11 @@
 (ns handler
-  (:require [clojure.string :as str]
-            [clojure.pprint :refer [pprint]]
-            [dl] [fb]))
+  (:require [dl]
+            [fb]))
 
 (def verify-token (System/getenv "VERIFY_TOKEN"))
 
-(defn verification [{{mode "hub.mode"
-                      token "hub.verify_token"
+(defn verification [{{mode      "hub.mode"
+                      token     "hub.verify_token"
                       challenge "hub.challenge"} :params}]
   (if (and (= "subscribe" mode)
            (= verify-token token))
@@ -59,7 +58,6 @@
                      {:text "Oops! Try sending another image."})))
 
 (defn handle-event [{:keys [body]}]
-  ;(pprint body)
   (if (= "page" (:object body))
     (do
       (doseq [entry (:entry body)]
