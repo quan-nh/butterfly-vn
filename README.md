@@ -7,4 +7,13 @@ a [Messenger bot](http://m.me/vi.butterfly/) try to predict Butterfly [Species](
 
 ![messenger](img_2125.png)
 
-** test image from [this](https://twitter.com/kyanh/status/761781201657065472)
+## Development
+```sh
+$ clj -m www
+```
+
+## Deployment
+```sh
+$ clojure -A:depstar -m hf.depstar.uberjar butterfly.jar
+$ java -cp butterfly.jar clojure.main -m www
+```

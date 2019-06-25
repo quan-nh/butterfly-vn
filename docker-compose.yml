@@ -5,5 +5,5 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/code
+      - .:/apps
       - ~/.m2:/root/.m2/

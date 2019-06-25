@@ -1,9 +1,6 @@
-FROM clojure:tools-deps-alpine
+FROM openjdk:11
 
-COPY ./bot /code
-COPY ./db /code
-COPY ./deps.edn /code/
+COPY ./butterfly.jar /apps/
+WORKDIR /apps
 
-WORKDIR /code
-
-ENTRYPOINT ["clojure", "-m", "www"]
+ENTRYPOINT ["java", "-cp", "butterfly.jar", "clojure.main", "-m", "www"]
