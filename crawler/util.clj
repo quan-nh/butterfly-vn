@@ -18,13 +18,15 @@
              out)))
 
 (defn- crop-image [^File image dest-dir x y]
-  (let [buffered-image (ImageIO/read image)
-        file-name (.getName image)
-        [width height] (dimensions buffered-image)]
-    (format/as-file
-      (crop-from image x y (- width (* 2 x)) (- height (* 2 y)))
-      (str dest-dir "/" file-name)
-      :verbatim)))
+  (try
+    (let [buffered-image (ImageIO/read image)
+          file-name (.getName image)
+          [width height] (dimensions buffered-image)]
+      (format/as-file
+        (crop-from image x y (- width (* 2 x)) (- height (* 2 y)))
+        (str dest-dir "/" file-name)
+        :verbatim))
+    (catch Exception _)))
 
 (defn crop-images [source dest x y]
   (doseq [dir (->> (file-seq (io/file source))

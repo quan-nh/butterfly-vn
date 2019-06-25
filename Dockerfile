@@ -1,8 +1,8 @@
 FROM clojure:tools-deps-alpine
 
-ADD ./bot /code
-ADD ./db /code
-ADD ./deps.edn /code
+COPY ./bot /code
+COPY ./db /code
+COPY ./deps.edn /code/
 
 WORKDIR /code
 
