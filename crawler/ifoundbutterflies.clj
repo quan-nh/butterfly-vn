@@ -4,16 +4,18 @@
             [clojure.java.jdbc :as jdbc]
             [clojure.string :as str]
             [clj-http.client :as http]
+            [com.climate.claypoole :as cp]
             [db]
             [net.cgrand.enlive-html :refer :all]
-            [util :refer [save-image crop-images]])
+            [util :refer [crop-images]])
   (:import (java.io StringReader)))
 
 (def base-url "https://www.ifoundbutterflies.org")
+(def cm (clj-http.conn-mgr/make-reusable-conn-manager {:insecure? true}))
 
 (def links
   (let [dom (-> (str base-url "/history-of-species-pages")
-                (http/get {:insecure? true}) :body
+                (http/get {:connection-manager cm}) :body
                 StringReader. html-resource)]
     (->> (select dom [:div#introtext_95 [:a (attr-starts :href "/sp/")]])
          (map #(get-in % [:attrs :href]))
@@ -21,7 +23,7 @@
 
 (defn butterfly [url]
   (let [dom (-> (str base-url url)
-                http/get :body
+                (http/get {:connection-manager cm}) :body
                 StringReader. html-resource)
         superfamily (-> dom (select [:a.txn.superfamily]) first text)
         family (-> dom (select [:a.txn.family]) first text)
@@ -42,40 +44,32 @@
      :common-name common-name
      :imgs        imgs}))
 
-(def visited-links (atom #{}))
-(def error-links (atom #{}))
-
 (def base-dir "./img-ifoundbutterflies")
 (def csv-file "./all_data.csv")
 (def bucket "gs://butterfly-244505-vcm/img/butterfly")
 
+(defn- save-image [img dir label]
+  (let [url (str base-url img)
+        file (str "ifoundbutterflies_" (-> img (str/split #"/") last))]
+    (with-open [out (io/output-stream (str dir "/" file))]
+      (io/copy (:body (http/get (str/replace url #" " "%20")
+                                {:as                 :stream
+                                 :connection-manager cm}))
+               out))
+    (spit csv-file (str bucket "/" label "/" file "," label "\n") :append true)))
+
 (defn save-data []
-  (doseq [link (drop 133 links)]
+  (doseq [link links]
     (println link)
     (try
       (let [{:keys [genus species imgs]} (butterfly link)
             label (str genus "_" species)
-            img-dir (str base-dir "/" label)]
-        (.mkdir (io/file img-dir))
+            dir (str base-dir "/" label)]
+        (.mkdir (io/file dir))
         (println "saving" (count imgs) "images")
-        (doseq [img imgs]
-          (save-image (str base-url img)
-                      (str img-dir
-                           "/ifoundbutterflies_"
-                           (-> img (str/split #"/") last)))
-          (spit csv-file (str bucket "/" label
-                              "/ifoundbutterflies_"
-                              (-> img (str/split #"/") last) "," label "\n") :append true)))
-      (swap! visited-links #(conj % link))
+        (cp/pmap 4 #(save-image % dir label) imgs))
       (catch Exception e
-        (println "Exception:" (.getMessage e))
-        (swap! error-links #(conj % link)))))
-  (prn @visited-links)
-  (prn @error-links))
-
-#_(http/with-connection-pool
-    {:timeout 5 :threads 4 :insecure? true :default-per-route 10}
-    (save-data))
+        (println "Exception:" (.getMessage e))))))
 
 ;mv img-ifoundbutterflies/Papilio_clytia img-ifoundbutterflies/Chilasa_clytia
 ;mv img-ifoundbutterflies/Eurema_andersoni img-ifoundbutterflies/Eurema_andersonii
@@ -101,6 +95,4 @@
                 {:species "andersonii"}
                 ["genus = ? AND species = ?" "Eurema" "andersoni"]))
 
-#_(http/with-connection-pool
-    {:timeout 5 :threads 4 :insecure? true :default-per-route 10}
-    (insert-db))
+;(clj-http.conn-mgr/shutdown-manager cm)
