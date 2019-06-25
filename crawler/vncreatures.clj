@@ -9,7 +9,7 @@
 
 (def base-url "http://www.vncreatures.net")
 (def img-dir "./img")
-(def csv-file "./all_data.csv")
+(def csv-file "./butterfly_all_data.csv")
 (def bucket "gs://butterfly-244505-vcm/img/butterfly")
 
 (defn butterflies [page]

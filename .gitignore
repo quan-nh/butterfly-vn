@@ -3,5 +3,5 @@
 *.iml
 *.idea/
 /crawler/img*
-/crawler/all_data.csv
+/crawler/butterfly_all_data.csv
 *.DS_Store

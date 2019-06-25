@@ -17,10 +17,10 @@
 
 (defn- keywordize [name] (-> name (str/replace #"\s+" "-") (str/replace #":" "") keyword))
 
-(defn- capitalize-words 
+(defn- capitalize-words
   "Capitalize every word in a string"
   [s]
-  (->> (str/split (str s) #"\b") 
+  (->> (str/split (str s) #"\b")
        (map str/capitalize)
        str/join))
 
@@ -41,21 +41,28 @@
 
 (def n (atom 0))
 
+(def base-dir "./img-butterflycircle")
+(def csv-file "./butterfly_all_data.csv")
+(def bucket "gs://butterfly-244505-vcm/img/butterfly")
+
 (defn save-data []
   (doseq [link links]
     (println link)
     (let [{:keys [genus species imgs]} (butterfly link)
-          dir (str "../data-butterflycircle/" (str/capitalize genus) "_" species)]
+          label (str (str/capitalize genus) "_" species)
+          dir (str base-dir "/" label)]
       (.mkdir (io/file dir))
       (println "saving" (count imgs) "images to dir" dir)
       (doall
-       (pmap
-        (fn [img]
-          (let [ext (str/lower-case (subs img (str/last-index-of img ".")))]
-            (save-image img (str dir "/butterflycircle_" (swap! n inc) ext))))
-        imgs)))))
+        (pmap
+          (fn [img]
+            (let [ext (str/lower-case (subs img (str/last-index-of img ".")))
+                  file (str "butterflycircle_" (swap! n inc) ext)]
+              (save-image img (str dir "/" file))
+              (spit csv-file (str bucket "/" label "/" file "," label "\n") :append true)))
+          imgs)))))
 
-;(crop-images "../data-butterflycircle" "../data" 20 30)
+;(crop-images "./img-butterflycircle" "./img" 20 30)
 
 (defn insert-db []
   (doseq [link links]
@@ -64,9 +71,9 @@
       (prn (select-keys bf [:family :genus :species]))
       (when-not (seq (jdbc/query db/db-spec ["SELECT * FROM butterfly WHERE genus = ? AND species = ?" (str/capitalize genus) species]))
         (println "inserting..")
-        (jdbc/insert! db/db-spec :butterfly {:family (str/capitalize family)
-                                             :subfamily (str/capitalize subfamily)
-                                             :genus (str/capitalize genus)
-                                             :species species
+        (jdbc/insert! db/db-spec :butterfly {:family      (str/capitalize family)
+                                             :subfamily   (str/capitalize subfamily)
+                                             :genus       (str/capitalize genus)
+                                             :species     species
                                              :common_name (capitalize-words common-name)
-                                             :url link})))))
+                                             :url         link})))))
