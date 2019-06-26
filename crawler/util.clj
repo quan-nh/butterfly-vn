@@ -10,8 +10,6 @@
   (:import (java.io File)
            (javax.imageio ImageIO)))
 
-(defn- ext [url])
-
 (defn save-image [url file]
   (with-open [out (io/output-stream file)]
     (io/copy (:body (http/get (str/replace url #" " "%20") {:as :stream}))
@@ -39,23 +37,19 @@
         (pmap #(crop-image % dest-dir x y)
               (rest (file-seq dir)))))))
 
-(defn cleanup []
-  (doseq [dir (->> (file-seq (io/file "../data-train"))
+(def img-dir "./img")
+(def csv-file "./butterfly_all_data.csv")
+(def bucket "gs://butterfly-244505-vcm/img/butterfly")
+
+(defn ->csv
+  "Put info to csv file for AutoML training"
+  []
+  (doseq [dir (->> (file-seq (io/file img-dir))
                    rest
-                   (filter #(.isDirectory %)))]
-    (let [no-imgs (count (.list dir))
-          no-vn-imgs (->> (.list dir)
-                          (filter #(str/starts-with? % "vn"))
-                          count)]
-      (when (or (< no-imgs 30)
-                (zero? no-vn-imgs))
-        (println "remove" (.getName dir))
-        (doseq [f (reverse (file-seq dir))]
-          (io/delete-file f))))))
-; rm -rf data-train
-; cp -r data data-train
-; rename 's/-/_/g' *
-; (cleanup)
+                   (filter #(.isDirectory %))
+                   (filter #(>= (count (.list %)) 30)))]
+    (doseq [file (rest (file-seq dir))]
+      (spit csv-file (str bucket "/" (.getName dir) "/" (.getName file) "," (.getName dir) "\n") :append true))))
 
 #_(let [vn-data (->> (jdbc/query db/db-spec
                                  ["SELECT vn_name, genus, species
@@ -64,7 +58,7 @@
                      (reduce (fn [m {:keys [vn_name genus species]}]
                                (assoc m (str genus "_" species) vn_name))
                              {}))
-        dir (->> (file-seq (io/file "../data"))
+        dir (->> (file-seq (io/file "./img"))
                  rest
                  (filter #(.isDirectory %))
                  (map (fn [dir]

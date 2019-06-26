@@ -19,7 +19,7 @@
                 StringReader. html-resource)]
     (->> (select dom [:div#introtext_95 [:a (attr-starts :href "/sp/")]])
          (map #(get-in % [:attrs :href]))
-         set)))
+         (apply sorted-set))))
 
 (defn butterfly [url]
   (let [dom (-> (str base-url url)
@@ -44,36 +44,32 @@
      :common-name common-name
      :imgs        imgs}))
 
-(def base-dir "./img-ifoundbutterflies")
-(def csv-file "./butterfly_all_data.csv")
-(def bucket "gs://butterfly-244505-vcm/img/butterfly")
-
-(defn- save-image [img dir label]
+(defn- save-image [img dir]
   (let [url (str base-url img)
         file (str "ifoundbutterflies_" (-> img (str/split #"/") last))]
     (with-open [out (io/output-stream (str dir "/" file))]
       (io/copy (:body (http/get (str/replace url #" " "%20")
                                 {:as                 :stream
                                  :connection-manager cm}))
-               out))
-    (spit csv-file (str bucket "/" label "/" file "," label "\n") :append true)))
+               out))))
 
 (defn save-data []
   (doseq [link links]
     (println link)
     (try
       (let [{:keys [genus species imgs]} (butterfly link)
-            label (str genus "_" species)
-            dir (str base-dir "/" label)]
+            dir (str "./img-ifoundbutterflies/" genus "_" species)]
         (.mkdir (io/file dir))
         (println "saving" (count imgs) "images")
-        (cp/pmap 4 #(save-image % dir label) imgs))
+        (cp/with-shutdown!
+          [pool (cp/threadpool 4)]
+          (doall (cp/pmap pool #(save-image % dir) imgs))))
       (catch Exception e
         (println "Exception:" (.getMessage e))))))
 
 ;mv img-ifoundbutterflies/Papilio_clytia img-ifoundbutterflies/Chilasa_clytia
 ;mv img-ifoundbutterflies/Eurema_andersoni img-ifoundbutterflies/Eurema_andersonii
-;(crop-images "./img-ifoundbutterflies" "./img" 10 65)
+#_(crop-images "./img-ifoundbutterflies" "./img" 10 65)
 
 (defn insert-db []
   (doseq [link links]

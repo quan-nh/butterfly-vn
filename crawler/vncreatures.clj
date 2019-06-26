@@ -8,9 +8,6 @@
   (:import (java.net URL)))
 
 (def base-url "http://www.vncreatures.net")
-(def img-dir "./img")
-(def csv-file "./butterfly_all_data.csv")
-(def bucket "gs://butterfly-244505-vcm/img/butterfly")
 
 (defn butterflies [page]
   (let [dom (-> (str base-url "/kqtracuu.php?type=nhom&loai=3&page=" page)
@@ -29,34 +26,33 @@
 
 (defn save-data []
   (doseq [[id _ genus species] (mapcat butterflies (range 1 7))]
-    (let [label (str genus "_" species)
-          dir (str img-dir "/" label)]
+    (let [dir (str "./img/" genus "_" species)]
       (println dir)
       (.mkdir (io/file dir))
       (try
         (save-image
           (str base-url "/pictures/insect/" id "s.jpg")
           (str dir "/vncreatures_" id "s.jpg"))
-        (spit csv-file (str bucket "/" label "/vncreatures_" id "s.jpg," label "\n") :append true)
         (catch Exception _))
       (try
         (save-image
           (str base-url "/pictures/insect/" id "_1s.jpg")
           (str dir "/vncreatures_" id "_1s.jpg"))
-        (spit csv-file (str bucket "/" label "/vncreatures_" id "_1s.jpg," label "\n") :append true)
         (catch Exception _))
       (try
         (save-image
           (str base-url "/pictures/insect/" id "_2s.jpg")
           (str dir "/vncreatures_" id "_2s.jpg"))
-        (spit csv-file (str bucket "/" label "/vncreatures_" id "_2s.jpg," label "\n") :append true)
         (catch Exception _))
       (try
         (save-image
           (str base-url "/pictures/insect/" id "_3s.jpg")
           (str dir "/vncreatures_" id "_3s.jpg"))
-        (spit csv-file (str bucket "/" label "/vncreatures_" id "_3s.jpg," label "\n") :append true)
         (catch Exception _)))))
+
+#_(http/with-connection-pool
+    {:timeout 5 :threads 4 :insecure? false :default-per-route 10}
+    (save-data))
 
 (defn insert-db []
   (doseq [[id vn-name genus species] (mapcat butterflies (range 1 7))]
@@ -70,3 +66,7 @@
                                            :species species
                                            :vn_name vn-name
                                            :url     (str base-url "/chitiet.php?loai=3&ID=" id)}))))
+
+#_(http/with-connection-pool
+    {:timeout 5 :threads 4 :insecure? false :default-per-route 10}
+    (insert-db))

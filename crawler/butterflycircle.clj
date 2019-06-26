@@ -41,16 +41,11 @@
 
 (def n (atom 0))
 
-(def base-dir "./img-butterflycircle")
-(def csv-file "./butterfly_all_data.csv")
-(def bucket "gs://butterfly-244505-vcm/img/butterfly")
-
 (defn save-data []
   (doseq [link links]
     (println link)
     (let [{:keys [genus species imgs]} (butterfly link)
-          label (str (str/capitalize genus) "_" species)
-          dir (str base-dir "/" label)]
+          dir (str "./img-butterflycircle/" (str/capitalize genus) "_" species)]
       (.mkdir (io/file dir))
       (println "saving" (count imgs) "images to dir" dir)
       (doall
@@ -58,11 +53,13 @@
           (fn [img]
             (let [ext (str/lower-case (subs img (str/last-index-of img ".")))
                   file (str "butterflycircle_" (swap! n inc) ext)]
-              (save-image img (str dir "/" file))
-              (spit csv-file (str bucket "/" label "/" file "," label "\n") :append true)))
+              (save-image img (str dir "/" file))))
           imgs)))))
 
-;(crop-images "./img-butterflycircle" "./img" 20 30)
+#_(http/with-connection-pool
+    {:timeout 5 :threads 4 :insecure? false :default-per-route 10}
+    (save-data))
+#_(crop-images "./img-butterflycircle" "./img" 20 30)
 
 (defn insert-db []
   (doseq [link links]
@@ -77,3 +74,7 @@
                                              :species     species
                                              :common_name (capitalize-words common-name)
                                              :url         link})))))
+
+#_(http/with-connection-pool
+    {:timeout 5 :threads 4 :insecure? false :default-per-route 10}
+    (insert-db))
