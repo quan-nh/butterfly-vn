@@ -47,7 +47,10 @@
   (doseq [dir (->> (file-seq (io/file img-dir))
                    rest
                    (filter #(.isDirectory %))
-                   (filter #(>= (count (.list %)) 30)))]
+                   (filter #(or (and (>= (count (.list %)) 30)
+                                     (pos? (count (filter (fn [name] (str/starts-with? name "vn"))
+                                                          (.list %)))))
+                                (>= (count (.list %)) 100))))]
     (doseq [file (rest (file-seq dir))]
       (spit csv-file (str bucket "/" (.getName dir) "/" (.getName file) "," (.getName dir) "\n") :append true))))
 
