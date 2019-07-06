@@ -23,25 +23,19 @@
 
       400
       (fb/send-message sender-psid
-                       {:text "I can't see Butterfly in your message. Make sure your message has a butterfly image link, or you can send an image directly!"})
+                       {:text "Butterfly not found!"})
 
-      (fb/send-message sender-psid
-                       {:text "Oops! Something went wrong."}))))
+      (do
+        (prn body)
+        (fb/send-message sender-psid
+                         {:text "Oops! Something went wrong."})))))
 
-(defn- handle-message [sender-psid {:keys [text nlp attachments]}]
-  (let [image-url (or (fb/attachment-url (first attachments))
-                      (some->> text (re-find #"https?://\S+")))]
-    (cond
-      (some-> nlp :entities :test first :confidence (> 0.8))
-      (let [user-profile (fb/memo-user-profile sender-psid)]
-        (predict-image sender-psid (:profile_pic user-profile)))
-
-      image-url
-      (predict-image sender-psid image-url)
-
-      :else
-      (fb/send-message sender-psid
-                       {:text (dl/memo-chatbot text)}))))
+(defn- handle-message [sender-psid {:keys [text attachments]}]
+  (if-let [image-url (or (fb/attachment-url (first attachments))
+                         (some->> text (re-find #"https?://\S+")))]
+    (predict-image sender-psid image-url)
+    (fb/send-message sender-psid
+                     {:text "I can't see Butterfly in your message. Make sure your message has a butterfly image link, or you can send an image directly!"})))
 
 (defn- handle-postback [sender-psid {:keys [payload]}]
   (case payload
