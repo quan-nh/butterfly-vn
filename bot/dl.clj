@@ -5,8 +5,7 @@
             [cheshire.core :as json]
             [org.httpkit.client :as http]
             [clojure.java.io :as io])
-  (:import (java.net URLEncoder)
-           (com.google.auth.oauth2 GoogleCredentials)
+  (:import (com.google.auth.oauth2 GoogleCredentials)
            (java.util Base64)))
 
 (def dl-server (System/getenv "DL_SERVER"))
@@ -20,20 +19,18 @@
               :subprotocol "sqlite"
               :subname     ":resource:butterfly.db"})
 
-(defn- url-encode [url] (some-> url (URLEncoder/encode "UTF-8") (.replace "+" "%20")))
-
 (defn- parse-result [{label :displayName, {:keys [score]} :classification}]
   (let [[genus species] (str/split label #"_")
-        latin-name (str genus " " (str/lower-case species))
+        latin-name (str genus " " species)
         {:keys [vn_name common_name url]} (or (first (jdbc/query
                                                        db-spec
                                                        ["SELECT vn_name, common_name, url
                                                         FROM butterfly
                                                         WHERE genus = ? AND species = ?"
-                                                        genus (str/lower-case species)]))
+                                                        genus species]))
                                               {:vn_name latin-name
                                                :url     "http://www.vncreatures.net/hinhanh.php?nhom=1&loai=3"})]
-    [(or vn_name common_name) (str latin-name " ~ " (* 100 score) "%") url]))
+    [(or vn_name common_name) (format "%s ~ %.2f%%" latin-name (* 100 score)) url]))
 
 (defn- label-image [image-url]
   (.refreshIfExpired credential)
