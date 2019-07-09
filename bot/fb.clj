@@ -39,21 +39,21 @@
                                     :title "👎"
                                     :payload "no"}]}]}})
 
-(defn send-message [sender-psid response]
+(defn send-message [recipient-id response]
   (http/post "https://graph.facebook.com/v2.6/me/messages"
              {:query-params {:access_token page-access-token}
               :headers {"Content-Type" "application/json"}
-              :body (json/encode {:recipient {:id sender-psid}
+              :body (json/encode {:recipient {:id recipient-id}
                                   :message response})}
              (fn [{:keys [error]}]
                (when error
                  (println "Failed, exception is " error)))))
 
-(defn send-action [sender-psid action]
+(defn send-action [recipient-id action]
   (http/post "https://graph.facebook.com/v2.6/me/messages"
              {:query-params {:access_token page-access-token}
               :headers {"Content-Type" "application/json"}
-              :body (json/encode {:recipient {:id sender-psid}
+              :body (json/encode {:recipient {:id recipient-id}
                                   :sender_action action})}
              (fn [{:keys [error]}]
                (when error
