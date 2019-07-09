@@ -5,5 +5,4 @@
 /crawler/img*
 /crawler/butterfly_all_data.csv
 *.DS_Store
-butterfly.jar
 *butterfly-service-account.json

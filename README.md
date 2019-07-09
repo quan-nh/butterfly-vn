@@ -14,6 +14,9 @@ $ clj -m www
 
 ## Deployment
 ```sh
+# build uberjar
 $ clojure -A:depstar -m hf.depstar.uberjar butterfly.jar
-$ java -cp butterfly.jar clojure.main -m www
+# to cloud run
+$ gcloud builds submit -t gcr.io/PROJECT-ID/butterfly:20190709
+$ gcloud beta run deploy --image gcr.io/PROJECT-ID/butterfly:20190709 --platform managed
 ```

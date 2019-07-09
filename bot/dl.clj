@@ -9,11 +9,12 @@
            (java.util Base64)))
 
 (def dl-server (System/getenv "DL_SERVER"))
-(def credential (-> "butterfly-service-account.json"
-                    io/resource
-                    io/input-stream
-                    GoogleCredentials/fromStream
-                    (.createScoped ["https://www.googleapis.com/auth/cloud-platform"])))
+(def credential (GoogleCredentials/getApplicationDefault)
+  #_(-> "butterfly-service-account.json"
+        io/resource
+        io/input-stream
+        GoogleCredentials/fromStream
+        (.createScoped ["https://www.googleapis.com/auth/cloud-platform"])))
 
 (def db-spec {:classname   "org.sqlite.JDBC"
               :subprotocol "sqlite"
