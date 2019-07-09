@@ -57,6 +57,7 @@
       (doseq [entry (:entry body)]
         (let [webhook-event (first (:messaging entry))
               sender-psid (get-in webhook-event [:sender :id])]
+          (fb/send-action sender-psid "typing_on")
           (cond
             (:message webhook-event) (handle-message sender-psid (:message webhook-event))
             (:postback webhook-event) (handle-postback sender-psid (:postback webhook-event)))))

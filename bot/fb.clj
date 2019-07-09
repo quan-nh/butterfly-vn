@@ -49,6 +49,16 @@
                (when error
                  (println "Failed, exception is " error)))))
 
+(defn send-action [sender-psid action]
+  (http/post "https://graph.facebook.com/v2.6/me/messages"
+             {:query-params {:access_token page-access-token}
+              :headers {"Content-Type" "application/json"}
+              :body (json/encode {:recipient {:id sender-psid}
+                                  :sender_action action})}
+             (fn [{:keys [error]}]
+               (when error
+                 (println "Failed, exception is " error)))))
+
 (defn- user-profile
   "Retrieving a Person's Profile"
   [psid]
