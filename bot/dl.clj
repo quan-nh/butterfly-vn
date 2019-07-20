@@ -44,11 +44,11 @@
                                                        "Authorization" (str "Bearer " access-token)}
                                              :body    (json/encode
                                                         {:payload {:image {:imageBytes img-bytes}}
-                                                         :params  {:score_threshold "0.3"}})})
+                                                         :params  {:score_threshold "0.01"}})})
           payload (:payload (json/decode body true))]
       (cond
         (pos? (count payload))
-        [status (parse-result (first payload))]
+        [status (parse-result (->> payload (sort-by #(get-in % [:classification :score]) >) first))]
 
         (and (= 200 status)
              (zero? (count payload)))
